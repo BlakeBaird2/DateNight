@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#021536; line-height:0; -webkit-font-smoothing:antialiased; }
+  a { color:#FFC58A; text-decoration:none; }
+  a:hover { color:#FFD9B3; }
+  input[type=range]{ accent-color:#142F63; }
+  @keyframes twinkleA { 0%,100% { opacity:.85 } 50% { opacity:.45 } }
+  @keyframes twinkleB { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#021536;color:#F3EAE0;line-height:normal;font-family:'DM Sans',system-ui,sans-serif">
+
+<sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="01 Landing" style="position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;background:#021536">
+
+  <div style="position:absolute;left:0;right:0;bottom:0;height:min(86vh,64vw);z-index:0">
+    <img src="img/hero-sky.png" alt="A couple sitting on a car hood watching the valley lights under a starry sky" style="width:100%;height:100%;object-fit:cover;object-position:64% 78%;display:block">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,#021536 0%,rgba(2,21,54,0.93) 7%,rgba(2,21,54,0.74) 15%,rgba(2,21,54,0.52) 24%,rgba(2,21,54,0.32) 33%,rgba(2,21,54,0.17) 42%,rgba(2,21,54,0.07) 51%,rgba(2,21,54,0) 62%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,#021536 0%,rgba(2,21,54,0.74) 24%,rgba(2,21,54,0.18) 50%,rgba(2,21,54,0) 66%)"></div>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;top:0;height:66%;z-index:1;pointer-events:none;animation:twinkleA 7s ease-in-out infinite;mask-image:linear-gradient(180deg,#000 0%,#000 52%,transparent 100%);-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 52%,transparent 100%);background-repeat:no-repeat;background-image:radial-gradient(circle 1.1px at 4% 7%,rgba(255,255,255,.85) 0 99%,transparent 100%),radial-gradient(circle 1px at 9% 23%,rgba(255,255,255,.7) 0 99%,transparent 100%),radial-gradient(circle 1.3px at 14% 12%,rgba(255,255,255,.8) 0 99%,transparent 100%),radial-gradient(circle 1px at 19% 32%,rgba(255,255,255,.6) 0 99%,transparent 100%),radial-gradient(circle 1.2px at 23% 5%,rgba(255,255,255,.8) 0 99%,transparent 100%),radial-gradient(circle 1px at 27% 18%,rgba(255,255,255,.65) 0 99%,transparent 100%),radial-gradient(circle 1.1px at 31% 28%,rgba(255,255,255,.7) 0 99%,transparent 100%),radial-gradient(circle 1.3px at 36% 9%,rgba(255,255,255,.85) 0 99%,transparent 100%),radial-gradient(circle 1px at 41% 22%,rgba(255,255,255,.6) 0 99%,transparent 100%),radial-gradient(circle 1.1px at 45% 34%,rgba(255,255,255,.7) 0 99%,transparent 100%),radial-gradient(circle 1.2px at 49% 13%,rgba(255,255,255,.8) 0 99%,transparent 100%),radial-gradient(circle 1px at 53% 26%,rgba(255,255,255,.6) 0 99%,transparent 100%),radial-gradient(circle 1.3px at 58% 6%,rgba(255,255,255,.85) 0 99%,transparent 100%),radial-gradient(circle 1px at 62% 20%,rgba(255,255,255,.65) 0 99%,transparent 100%),radial-gradient(circle 1.1px at 66% 31%,rgba(255,255,255,.7) 0 99%,transparent 100%),radial-gradient(circle 1.2px at 71% 11%,rgba(255,255,255,.8) 0 99%,transparent 100%),radial-gradient(circle 1px at 75% 24%,rgba(255,255,255,.6) 0 99%,transparent 100%),radial-gradient(circle 1.1px at 79% 36%,rgba(255,255,255,.65) 0 99%,transparent 100%),radial-gradient(circle 1.3px at 83% 15%,rgba(255,255,255,.85) 0 99%,transparent 100%),radial-gradient(circle 1px at 88% 28%,rgba(255,255,255,.6) 0 99%,transparent 100%),radial-gradient(circle 1.2px at 92% 8%,rgba(255,255,255,.8) 0 99%,transparent 100%),radial-gradient(circle 1px at 96% 21%,rgba(255,255,255,.65) 0 99%,transparent 100%),radial-gradient(circle 1px at 6% 40%,rgba(255,255,255,.55) 0 99%,transparent 100%),radial-gradient(circle 1.1px at 34% 43%,rgba(255,255,255,.6) 0 99%,transparent 100%),radial-gradient(circle 1px at 60% 45%,rgba(255,255,255,.5) 0 99%,transparent 100%),radial-gradient(circle 1.1px at 86% 41%,rgba(255,255,255,.55) 0 99%,transparent 100%)"></div>
+
+  <div style="position:absolute;left:0;right:0;top:0;height:60%;z-index:1;pointer-events:none;animation:twinkleB 11s ease-in-out infinite;mask-image:linear-gradient(180deg,#000 0%,#000 50%,transparent 100%);-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 50%,transparent 100%);background-repeat:no-repeat;background-image:radial-gradient(circle 1.8px at 11% 16%,rgba(255,232,198,.95) 0 99%,transparent 100%),radial-gradient(circle 1.6px at 29% 37%,rgba(255,255,255,.9) 0 99%,transparent 100%),radial-gradient(circle 2px at 44% 7%,rgba(255,232,198,.9) 0 99%,transparent 100%),radial-gradient(circle 1.6px at 57% 33%,rgba(255,255,255,.85) 0 99%,transparent 100%),radial-gradient(circle 1.9px at 68% 17%,rgba(255,232,198,.9) 0 99%,transparent 100%),radial-gradient(circle 1.7px at 81% 9%,rgba(255,255,255,.9) 0 99%,transparent 100%),radial-gradient(circle 1.6px at 91% 34%,rgba(255,232,198,.85) 0 99%,transparent 100%),radial-gradient(circle 1.7px at 21% 28%,rgba(255,255,255,.8) 0 99%,transparent 100%)"></div>
+
+  <header style="position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px clamp(20px,4vw,60px)">
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;letter-spacing:0.01em;color:#F6EFE6">tonight<span style="color:#FFC58A">.</span></div>
+    <div style="font-size:12.5px;letter-spacing:0.14em;text-transform:uppercase;color:#9FB4DC;white-space:nowrap">Provo &amp; Utah County</div>
+  </header>
+
+  <main style="position:relative;z-index:2;flex:1;display:flex;align-items:flex-start;padding:clamp(44px,10vh,120px) clamp(20px,4vw,60px) clamp(48px,8vh,96px)">
+    <div style="max-width:33em">
+      <p style="margin:0 0 24px;font-size:clamp(19px,2vw,25px);line-height:1.35;color:#BFD0EE;font-weight:400">Stress less. <em style="font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:1.24em;color:#FFC58A">Connect more.</em></p>
+      <h1 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(46px,6.6vw,88px);line-height:0.98;letter-spacing:-0.015em;color:#F8F1E7;text-wrap:balance;text-shadow:0 2px 30px rgba(2,21,54,0.6)">Set your night,<br>see your options.</h1>
+      <p style="margin:22px 0 0;max-width:27em;font-size:clamp(15.5px,1.25vw,17.5px);line-height:1.6;color:#C3D2ED;text-wrap:pretty">Date ideas that fit the time, budget, and area you actually have.</p>
+      <button type="button" onClick="{{ goSet }}" style="margin-top:34px;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:500;color:#10204A;background:#FFC58A;border:none;border-radius:999px;padding:17px 34px;cursor:pointer;white-space:nowrap;box-shadow:0 14px 40px -14px rgba(255,197,138,0.6);transition:background 140ms ease,transform 140ms ease" style-hover="background:#FFD9B3;transform:translateY(-1px)" style-active="transform:translateY(0)">Show me what&rsquo;s possible</button>
+    </div>
+  </main>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSet }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="02 Set your night" style="min-height:100vh;display:flex;flex-direction:column;background:#F6F1E8">
+  <header style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,60px);border-bottom:1px solid #E7DECF">
+    <button type="button" onClick="{{ goHome }}" style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;background:none;border:none;padding:0;cursor:pointer;color:#2F4C8E">tonight<span style="color:#E9A961">.</span></button>
+    <button type="button" onClick="{{ goHome }}" style="font-family:'DM Sans',sans-serif;font-size:14px;color:#46598A;background:none;border:1px solid #DCD3C4;border-radius:999px;padding:8px 16px;white-space:nowrap;cursor:pointer" style-hover="color:#142F63;border-color:#8FA3CC">&larr; Back to start</button>
+  </header>
+
+  <main style="flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:clamp(24px,3.2vw,52px);padding:clamp(28px,5vh,56px) clamp(20px,4vw,60px) 64px;align-items:stretch;max-width:1400px;width:100%;margin:0 auto;box-sizing:border-box">
+    <section style="min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vh,34px)">
+      <div style="min-width:0">
+        <p style="margin:0 0 10px;font-size:12.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#2B4680">Step 1 of 2</p>
+        <h2 style="margin:0 0 10px;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(34px,4vw,50px);line-height:1.02;letter-spacing:-0.015em;color:#142F63">Set your night.</h2>
+        <p style="margin:0;max-width:32em;font-size:clamp(15px,1.3vw,17px);line-height:1.55;color:#46598A;text-wrap:pretty">A few quick things. Change any of them and the ideas change with you.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:clamp(22px,2.6vh,30px)">
+        <div style="min-width:0">
+          <h3 style="margin:0 0 14px;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#46598A">How much time do you have?</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:9px">
+            <sc-for list="{{ timeChips }}" as="c" hint-placeholder-count="4">
+              <button type="button" onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="min-width:0;padding-top:clamp(20px,2.4vh,28px);border-top:1px solid #E7DECF">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px">
+            <h3 style="margin:0;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#46598A">What can you spend?</h3>
+            <span style="font-family:'Instrument Serif',Georgia,serif;font-size:30px;line-height:1;color:#142F63">{{ budgetLabel }}</span>
+          </div>
+          <input type="range" min="0" max="75" step="5" value="{{ budget }}" onChange="{{ setBudget }}" style="width:100%;height:22px;cursor:pointer">
+          <div style="display:flex;justify-content:space-between;font-size:12.5px;color:#586B96;margin-top:2px">
+            <span>Free</span><span>$75+</span>
+          </div>
+        </div>
+
+        <div style="min-width:0;padding-top:clamp(20px,2.4vh,28px);border-top:1px solid #E7DECF">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+            <h3 style="margin:0;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#46598A">What are you both into?</h3>
+            <span style="font-size:13px;color:#586B96">{{ interestHint }}</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:9px">
+            <sc-for list="{{ interestChips }}" as="c" hint-placeholder-count="6">
+              <button type="button" onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="min-width:0;padding-top:clamp(20px,2.4vh,28px);border-top:1px solid #E7DECF">
+          <h3 style="margin:0 0 14px;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#46598A">Where are you tonight?</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:9px">
+            <sc-for list="{{ areaChips }}" as="c" hint-placeholder-count="4">
+              <button type="button" onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside style="min-width:0;display:flex;flex-direction:column;border:1px solid #021536;border-radius:22px;overflow:hidden;background:#021536;box-shadow:0 1px 2px rgba(2,21,54,0.06),0 26px 50px -30px rgba(2,21,54,0.42);min-height:clamp(480px,64vh,680px)">
+      <div style="position:relative;flex:1 1 auto;min-height:clamp(230px,32vh,340px)">
+        <img src="img/carnival-card.png" alt="Two people walking a lit-up carnival midway at night" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 48%;display:block">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,21,54,0) 34%,rgba(2,21,54,0.55) 68%,rgba(2,21,54,0.92) 88%,#021536 100%)"></div>
+        <p style="position:absolute;left:clamp(18px,2vw,26px);top:18px;margin:0;font-size:12.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#F3EAE0;text-shadow:0 2px 16px rgba(2,21,54,0.9)">Tonight in Utah County</p>
+      </div>
+
+      <div style="flex:none;padding:4px clamp(20px,2.2vw,30px) clamp(22px,2.6vh,28px);display:flex;flex-direction:column">
+        <p style="margin:0 0 14px;font-family:'Instrument Serif',Georgia,serif;font-size:clamp(30px,3vw,40px);line-height:1.06;color:#F8F1E7">{{ matchHeadline }}</p>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ preview }}" as="p" hint-placeholder-count="3">
+            <div style="display:flex;gap:14px;align-items:baseline;justify-content:space-between;padding:11px 0;border-top:1px solid rgba(243,234,224,0.16)">
+              <span style="min-width:0;font-size:15px;line-height:1.4;color:#EFE7DC">{{ p.title }}</span>
+              <span style="flex:none;white-space:nowrap;font-size:13px;color:#A8BBE0;font-variant-numeric:tabular-nums">{{ p.meta }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <p style="margin:14px 0 18px;font-size:13.5px;line-height:1.55;color:#AFC1E4">{{ previewFooter }}</p>
+        <button type="button" onClick="{{ goOptions }}" style="width:100%;font-family:'DM Sans',sans-serif;font-size:17px;font-weight:500;color:#10204A;background:#FFC58A;border:none;border-radius:999px;padding:17px 28px;cursor:pointer;box-shadow:0 14px 40px -18px rgba(255,197,138,0.8);transition:background 140ms ease" style-hover="background:#FFD9B3">{{ ctaLabel }}</button>
+      </div>
+    </aside>
+  </main>
+</div>
+</sc-if>
+
+<sc-if value="{{ isOptions }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="03 Your options" style="min-height:100vh;display:flex;flex-direction:column;background:#F6F1E8">
+  <header style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,60px);border-bottom:1px solid #E7DECF">
+    <button type="button" onClick="{{ goHome }}" style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;background:none;border:none;padding:0;cursor:pointer;color:#2F4C8E">tonight<span style="color:#E9A961">.</span></button>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+      <button type="button" onClick="{{ goSet }}" style="font-family:'DM Sans',sans-serif;font-size:14px;color:#46598A;background:none;border:1px solid #DCD3C4;border-radius:999px;padding:8px 16px;white-space:nowrap;cursor:pointer" style-hover="color:#142F63;border-color:#8FA3CC">{{ filterSummary }}</button>
+      <button type="button" onClick="{{ goHome }}" style="font-family:'DM Sans',sans-serif;font-size:14px;color:#46598A;background:none;border:1px solid #DCD3C4;border-radius:999px;padding:8px 16px;white-space:nowrap;cursor:pointer" style-hover="color:#142F63;border-color:#8FA3CC">&larr; Back to start</button>
+    </div>
+  </header>
+
+  <main style="flex:1;padding:clamp(26px,3.4vw,44px) clamp(20px,4vw,60px) 56px;max-width:1400px;width:100%;margin:0 auto;box-sizing:border-box">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(20px,2.6vw,30px)">
+      <div style="min-width:0">
+        <h2 style="margin:0 0 8px;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(32px,3.6vw,46px);line-height:1.04;letter-spacing:-0.01em;color:#142F63;text-wrap:balance">{{ galleryHeadline }}</h2>
+        <p style="margin:0;max-width:38em;font-size:clamp(15px,1.2vw,16.5px);line-height:1.55;color:#46598A;text-wrap:pretty">{{ gallerySub }}</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;flex:none">
+        <span style="font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#7A6E5B;white-space:nowrap">Sort</span>
+        <sc-for list="{{ sortChips }}" as="c" hint-placeholder-count="3">
+          <button type="button" onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:clamp(16px,1.8vw,22px);align-items:stretch">
+      <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="6">
+        <div style="min-width:0;height:330px;perspective:1400px">
+          <div style="position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 520ms cubic-bezier(0.2,0.7,0.2,1);transform:{{ t.rot }}">
+
+            <button type="button" onClick="{{ t.flip }}" aria-label="{{ t.frontLabel }}" style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;min-width:0;display:flex;flex-direction:column;text-align:left;font-family:'DM Sans',sans-serif;padding:0;border:1px solid #EAE1D4;border-radius:18px;background:#FFFFFF;overflow:hidden;cursor:pointer;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -32px rgba(2,21,54,0.28);transition:border-color 140ms ease" style-hover="border-color:#8FA3CC">
+              <sc-if value="{{ t.hasPhoto }}" hint-placeholder-val="{{ false }}">
+                <span style="display:block;flex:none;height:184px;overflow:hidden;background:#021536">
+                  <img src="{{ t.photo }}" alt="{{ t.alt }}" style="width:100%;height:100%;object-fit:cover;object-position:58% 50%;display:block;transform:scale(1.16)">
+                </span>
+              </sc-if>
+              <sc-if value="{{ t.noPhoto }}" hint-placeholder-val="{{ true }}">
+                <span style="display:flex;flex:none;height:184px;background:repeating-linear-gradient(135deg,#E9DFCE 0 9px,#F2EADC 9px 18px);align-items:center;justify-content:center">
+                  <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.1em;color:#8B7F6B">{{ t.slot }}</span>
+                </span>
+              </sc-if>
+              <span style="flex:1;padding:16px 20px 18px;display:flex;flex-direction:column;gap:8px">
+                <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#8A7C66">{{ t.tag }}</span>
+                <span style="font-family:'Instrument Serif',Georgia,serif;font-size:23px;line-height:1.12;color:#142F63;text-wrap:pretty">{{ t.title }}</span>
+              </span>
+            </button>
+
+            <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);border-radius:18px;background:#021536;border:1px solid #021536;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -32px rgba(2,21,54,0.28);padding:22px 22px 20px;display:flex;flex-direction:column;gap:12px;overflow:hidden">
+              <p style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-size:21px;line-height:1.14;color:#F8F1E7;text-wrap:pretty">{{ t.title }}</p>
+              <p style="margin:0;font-size:14.5px;line-height:1.55;color:#C3D2ED;text-wrap:pretty">{{ t.hook }}</p>
+              <div style="margin-top:auto;display:flex;flex-direction:column;gap:7px;font-size:13px;color:#A8BBE0;font-variant-numeric:tabular-nums">
+                <span style="display:flex;justify-content:space-between;gap:10px;border-top:1px solid rgba(243,234,224,0.16);padding-top:7px"><span>Time</span><span style="color:#EFE7DC">{{ t.time }}</span></span>
+                <span style="display:flex;justify-content:space-between;gap:10px;border-top:1px solid rgba(243,234,224,0.16);padding-top:7px"><span>Cost</span><span style="color:#EFE7DC">{{ t.cost }}</span></span>
+                <span style="display:flex;justify-content:space-between;gap:10px;border-top:1px solid rgba(243,234,224,0.16);padding-top:7px"><span>Where</span><span style="color:#EFE7DC">{{ t.where }}</span></span>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:4px">
+                <button type="button" onClick="{{ t.pick }}" style="flex:1;font-family:'DM Sans',sans-serif;font-size:14.5px;font-weight:500;color:#10204A;background:#FFC58A;border:none;border-radius:999px;padding:12px 16px;cursor:pointer;transition:background 140ms ease" style-hover="background:#FFD9B3">How it goes</button>
+                <button type="button" onClick="{{ t.flip }}" style="font-family:'DM Sans',sans-serif;font-size:14.5px;color:#F3EAE0;background:none;border:1px solid rgba(243,234,224,0.45);border-radius:999px;padding:12px 16px;cursor:pointer;white-space:nowrap" style-hover="border-color:#F3EAE0">Back</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <p style="margin:clamp(22px,2.6vw,30px) 2px 0;font-size:13.5px;line-height:1.6;color:#46598A">{{ moreNote }}</p>
+  </main>
+</div>
+</sc-if>
+
+<sc-if value="{{ isIdea }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="04 One idea" style="min-height:100vh;display:flex;flex-direction:column;background:#F6F1E8">
+  <header style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,60px);border-bottom:1px solid #E7DECF">
+    <button type="button" onClick="{{ goHome }}" style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;background:none;border:none;padding:0;cursor:pointer;color:#2F4C8E">tonight<span style="color:#E9A961">.</span></button>
+    <button type="button" onClick="{{ goOptions }}" style="font-family:'DM Sans',sans-serif;font-size:14px;color:#46598A;background:none;border:1px solid #DCD3C4;border-radius:999px;padding:8px 16px;white-space:nowrap;cursor:pointer" style-hover="color:#142F63;border-color:#8FA3CC">&larr; All ideas</button>
+  </header>
+
+  <main style="flex:1;padding:clamp(26px,3.4vw,44px) clamp(20px,4vw,60px) 56px;max-width:900px;width:100%;margin:0 auto;box-sizing:border-box">
+    <section style="min-width:0;border:1px solid #EAE1D4;border-radius:22px;background:#FFFFFF;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -30px rgba(2,21,54,0.22);padding:clamp(22px,2.4vw,34px)">
+      <p style="margin:0 0 14px;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#2B4680">How this one goes</p>
+      <h2 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(30px,3.2vw,42px);line-height:1.06;letter-spacing:-0.01em;color:#142F63;text-wrap:pretty">{{ detail.title }}</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 20px">
+        <span style="font-size:13.5px;color:#1F3665;background:#FCE7CE;border-radius:999px;padding:6px 13px;white-space:nowrap">{{ detail.timeLabel }}</span>
+        <span style="font-size:13.5px;color:#1F3665;background:#FCE7CE;border-radius:999px;padding:6px 13px;white-space:nowrap">{{ detail.costLabel }}</span>
+        <span style="font-size:13.5px;color:#1F3665;background:#FCE7CE;border-radius:999px;padding:6px 13px;white-space:nowrap">{{ detail.where }}</span>
+      </div>
+      <p style="margin:0 0 22px;font-size:16px;line-height:1.65;color:#1F3665;max-width:44em;text-wrap:pretty">{{ detail.blurb }}</p>
+      <p style="margin:0 0 12px;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#46598A">How the night goes</p>
+      <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px">
+        <sc-for list="{{ detail.steps }}" as="s" hint-placeholder-count="3">
+          <li style="display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.55;color:#1F3665">
+            <span style="flex:none;width:22px;height:22px;border-radius:999px;background:#FFC58A;color:#142F63;font-size:12.5px;font-weight:500;display:flex;align-items:center;justify-content:center;margin-top:2px">{{ s.n }}</span>
+            <span>{{ s.text }}</span>
+          </li>
+        </sc-for>
+      </ol>
+    </section>
+  </main>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;sortBy&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;A mix&quot;,&quot;options&quot;:[&quot;A mix&quot;,&quot;Quickest first&quot;,&quot;Cheapest first&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Options screen&quot;}}">
+var IDEAS = [
+  { id:'overlook', tags:['Outdoors','Low-key'], title:'Stargaze at the Squaw Peak overlook', area:'Provo', mins:120, timeLabel:'About 2 hours', low:0, high:6, costLabel:'$0–6 (gas)', where:'Up Provo Canyon',
+    hook:'Fifteen minutes up the canyon and the whole valley is under you.',
+    blurb:'Squaw Peak Road climbs out of Provo Canyon and the first big turnout looks straight down at the valley lights. On a weeknight you will usually have it to yourselves. Bring a blanket — it drops ten degrees up there.',
+    steps:['Grab a blanket and something warm to drink on the way out of town.','Take US-189 into Provo Canyon and turn up Squaw Peak Road to the first wide turnout.','Give your eyes twenty minutes to adjust, then start naming things you can see from up there.'] },
+  { id:'bridalveil', tags:['Outdoors','Low-key'], title:'Bridal Veil Falls after dark, thermos in hand', area:'Provo', mins:90, timeLabel:'About 90 minutes', low:0, high:5, costLabel:'Free–$5', where:'Provo Canyon',
+    hook:'A short paved walk, loud water, and almost nobody there at night.',
+    blurb:'The paved path from the lower lot to the falls is ten minutes each way and lit enough to feel easy. At night the sound does most of the work, and you can sit on the rocks until you get cold.',
+    steps:['Fill a thermos with cocoa before you leave.','Park in the lower Bridal Veil lot and take the paved path toward the falls.','Sit on the flat rocks near the base until the cold wins, then drive back down the canyon slowly.'] },
+  { id:'pioneer', tags:['Books & film','Low-key'], title:'Pick each other a $5 book at Pioneer Book', area:'Provo', mins:60, timeLabel:'About an hour', low:6, high:14, costLabel:'$6–14', where:'Center Street, Provo',
+    hook:'Ten dollars, two strangers\u2019 books, and something to argue about.',
+    blurb:'Pioneer Book on Center Street is deep enough to get lost in for half an hour. The rule is simple: you each pick a book for the other one, five dollars or under, no explaining until you are back outside.',
+    steps:['Split up at the door and set a twenty-minute timer.','Find a book for the other person — five dollars or under, no hints.','Trade at the counter, then read the first page to each other over a treat down the block.'] },
+  { id:'lake', tags:['Outdoors','Food & treats'], title:'Sunset at Utah Lake, ice cream on the way home', area:'Provo', mins:120, timeLabel:'About 2 hours', low:9, high:16, costLabel:'$9–16', where:'West Provo',
+    hook:'The best light in the county, then a cone on University Ave.',
+    blurb:'Utah Lake State Park is ten minutes west of downtown and the sunset over the water is the reason people move here. Time it so you leave as the color goes, and stop for ice cream on the way back in.',
+    steps:['Check what time the sun sets and leave about forty minutes before.','Pay the day-use fee at Utah Lake State Park and walk out to the marina wall.','Drive back up Center and get ice cream on University Avenue before they close.'] },
+  { id:'velour', tags:['Live music'], title:'Whoever is playing Velour on Center Street', area:'Provo', mins:180, timeLabel:'About 3 hours', low:10, high:20, costLabel:'$10–20 at the door',
+    where:'Center Street, Provo',
+    hook:'A small room, four local bands, and no idea what you are about to hear.',
+    blurb:'Velour puts on all-ages shows most weeknights and you rarely need a ticket in advance. You will not know any of the bands, which is the point — you get four short sets and a lot to talk about after.',
+    steps:['Check the marquee or the board by the door for tonight\u2019s lineup.','Pay at the door and get a spot along the wall, not the back.','Walk to the corner after the last set and rank the bands out loud.'] },
+  { id:'provobeach', tags:['Games'], title:'Two games of bowling at Provo Beach', area:'Provo', mins:120, timeLabel:'About 2 hours', low:22, high:34, costLabel:'$22–34', where:'The Riverwoods, Provo',
+    hook:'Indoors, loud, and competitive enough to keep talking easy.',
+    blurb:'Provo Beach at the Riverwoods has short lanes, an arcade, and a ropes course overhead. Two games plus a round of tokens fills an evening without anybody having to be clever.',
+    steps:['Get a lane for two games — weeknights are usually walk-in.','Play the second game with a made-up rule each.','Spend whatever change is left in the arcade instead of buying dinner there.'] },
+  { id:'watergardens', tags:['Books & film','Food & treats'], title:'Second-run late show at Water Gardens', area:'North county', mins:150, timeLabel:'About 2.5 hours', low:8, high:14, costLabel:'$8–14 for two', where:'Pleasant Grove',
+    hook:'Movies most people already saw, for a few dollars a seat.',
+    blurb:'Water Gardens Cinema plays films a few weeks after everyone else for a fraction of the price, which makes a random pick feel low-stakes. Tickets and popcorn for two still land under fifteen dollars.',
+    steps:['Look at the showtimes and pick the one neither of you planned to see.','Buy tickets at the window — the late show is rarely full.','Get the small popcorn. Argue about the ending in the parking lot.'] },
+  { id:'nickelcity', tags:['Games'], title:'A roll of nickels at Nickel City', area:'Orem', mins:90, timeLabel:'About 90 minutes', low:10, high:16, costLabel:'$10–16', where:'State Street, Orem',
+    hook:'Old arcade cabinets, five cents a play, tickets you will never redeem.',
+    blurb:'Everything at Nickel City runs on nickels, so ten dollars lasts much longer than it should. Skee-ball for the tie-breaker, and the ticket counter gives you something ridiculous to take home.',
+    steps:['Change ten dollars into nickels at the front.','Pick five machines each and play every one of the other person\u2019s picks.','Settle it on skee-ball and cash the tickets in for the worst prize you can find.'] },
+  { id:'rivertrail', tags:['Outdoors'], title:'Ride the Provo River Trail to the lake', area:'Orem', mins:120, timeLabel:'About 2 hours', low:0, high:0, costLabel:'Free', where:'Orem to Utah Lake',
+    hook:'Flat, paved, and quiet once the sun starts going down.',
+    blurb:'The river trail runs from Orem down to the lake with almost no road crossings. It is flat the whole way, so you can talk the entire ride, and the turnaround at the water is a natural place to stop.',
+    steps:['Get on the trail near Geneva Road and head west toward the lake.','Ride until the trail opens up at the water and stop there.','Turn around when the light goes orange — the ride back is the good part.'] }
+];
+
+var PHOTOS = { overlook:'img/overlook.png', velour:'img/carnival-card.png' };
+var ALTS = {
+  overlook:'Valley lights seen from a canyon overlook at night',
+  velour:'A small lit-up venue on a night street'
+};
+var NUM = ['No','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'];
+
+var TIMES = [
+  { label:'An hour', value:60 },
+  { label:'2 hours', value:120 },
+  { label:'3 hours', value:180 },
+  { label:'The whole evening', value:300 }
+];
+var AREAS = ['Provo','Orem','North county','Anywhere in the county'];
+var INTERESTS = ['Outdoors','Food & treats','Live music','Books & film','Games','Low-key'];
+
+class Component extends DCLogic {
+  state = { screen:'landing', time:180, budget:40, area:'Provo', interests:[], chosen:null, sort:null, flipped:null };
+
+  go = (screen) => this.setState({ screen });
+
+  sortMode() { return this.state.sort || this.props.sortBy || 'A mix'; }
+
+  matches() {
+    const { time, budget, area, interests } = this.state;
+    let list = IDEAS.filter(i =>
+      i.mins <= time &&
+      i.low <= budget &&
+      (area === 'Anywhere in the county' || i.area === area) &&
+      (interests.length === 0 || i.tags.some(t => interests.indexOf(t) !== -1)));
+    const sort = this.sortMode();
+    if (sort.indexOf('Quickest') === 0) list = list.slice().sort((a,b) => a.mins - b.mins);
+    if (sort.indexOf('Cheapest') === 0) list = list.slice().sort((a,b) => a.high - b.high);
+    return list;
+  }
+
+  chip(active) {
+    return 'font-family:\'DM Sans\',sans-serif;font-size:15px;line-height:1;padding:12px 18px;border-radius:999px;white-space:nowrap;cursor:pointer;transition:all 140ms ease;'
+      + (active
+        ? 'background:#3F5D9E;color:#FFF6EA;border:1px solid #3F5D9E;font-weight:500;'
+        : 'background:#FFFFFF;color:#1F3665;border:1px solid #E0D7C7;');
+  }
+
+  renderVals() {
+    const s = this.state;
+    const list = this.matches();
+    const sortNow = this.sortMode();
+    const detail = list.find(i => i.id === s.chosen) || list[0] || IDEAS[0];
+    const budgetLabel = s.budget === 0 ? 'Free only' : (s.budget >= 75 ? '$75+' : '$' + s.budget);
+    const n = list.length;
+
+    return {
+      isLanding: s.screen === 'landing',
+      isSet: s.screen === 'set',
+      isOptions: s.screen === 'options',
+      isIdea: s.screen === 'idea',
+      goHome: () => this.go('landing'),
+      goSet: () => this.go('set'),
+      goOptions: () => this.setState({ screen:'options', chosen:null }),
+
+      galleryHeadline: n === 0 ? 'Nothing fits that yet' : (n === 1 ? 'One way to spend tonight' : NUM[n] + ' ways to spend tonight'),
+      gallerySub: n === 0
+        ? 'Nudge the time or the budget up a little and things start showing up.'
+        : 'All of these fit your time, budget, and area. Tap a card to flip it over for the details.',
+      sortChips: ['A mix','Quickest','Cheapest'].map(label => ({
+        label,
+        style: this.chip(sortNow === label),
+        pick: () => this.setState({ sort: label })
+      })),
+      tiles: list.map(i => ({
+        title: i.title, hook: i.hook, tag: i.tags[0],
+        time: i.timeLabel.replace('About ',''), cost: i.costLabel, where: i.where,
+        hasPhoto: !!PHOTOS[i.id], noPhoto: !PHOTOS[i.id],
+        photo: PHOTOS[i.id], alt: ALTS[i.id] || '',
+        slot: 'photo — ' + i.area.toLowerCase(),
+        rot: s.flipped === i.id ? 'rotateY(180deg)' : 'rotateY(0deg)',
+        frontLabel: 'Flip for details: ' + i.title,
+        flip: () => this.setState(st => ({ flipped: st.flipped === i.id ? null : i.id })),
+        pick: () => this.setState({ screen:'idea', chosen: i.id, flipped:null })
+      })),
+
+      timeChips: TIMES.map(t => ({
+        label: t.label,
+        style: this.chip(s.time === t.value),
+        pick: () => this.setState({ time: t.value, chosen:null })
+      })),
+      interestChips: INTERESTS.map(t => ({
+        label: t,
+        style: this.chip(s.interests.indexOf(t) !== -1),
+        pick: () => this.setState(st => ({
+          interests: st.interests.indexOf(t) !== -1
+            ? st.interests.filter(x => x !== t)
+            : st.interests.concat([t]),
+          chosen: null
+        }))
+      })),
+      interestHint: s.interests.length === 0
+        ? 'Optional — pick any that fit'
+        : s.interests.length + ' picked',
+      areaChips: AREAS.map(a => ({
+        label: a,
+        style: this.chip(s.area === a),
+        pick: () => this.setState({ area: a, chosen:null })
+      })),
+      budget: s.budget,
+      budgetLabel,
+      setBudget: (e) => this.setState({ budget: Number(e.target.value), chosen:null }),
+
+      matchHeadline: n === 0 ? 'Nothing fits that yet' : (n === 1 ? '1 idea fits' : n + ' ideas fit'),
+      ctaLabel: n === 0 ? 'Show me what\u2019s possible' : (n === 1 ? 'See this idea' : 'See all ' + n + ' ideas'),
+      preview: list.slice(0,3).map(i => ({ title:i.title, meta:i.timeLabel.replace('About ','') + ' · ' + i.costLabel.split(' ')[0] })),
+      previewFooter: n === 0
+        ? 'Nudge the time or the budget up a little and things start showing up.'
+        : (n > 3 ? 'And ' + (n - 3) + ' more on the next screen.' : 'You pick which one, not us.'),
+
+      filterSummary: budgetLabel + ' · ' + (s.time >= 300 ? 'all evening' : (s.time/60) + 'h') + ' · ' + s.area
+        + (s.interests.length ? ' · ' + (s.interests.length === 1 ? s.interests[0] : s.interests.length + ' interests') : ''),
+      detail: {
+        title: detail.title, timeLabel: detail.timeLabel, costLabel: detail.costLabel,
+        where: detail.where, blurb: detail.blurb,
+        steps: detail.steps.map((text,idx) => ({ n: idx+1, text }))
+      },
+      moreNote: 'Want different ones? Change the time, money, or area and look again.'
+    };
+  }
+}
+</script>
+</body>
+</html>
