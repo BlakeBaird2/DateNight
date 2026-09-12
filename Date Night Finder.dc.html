@@ -146,91 +146,42 @@
     </div>
   </header>
 
-  <main style="flex:1;padding:clamp(26px,3.4vw,44px) clamp(20px,4vw,60px) 56px;max-width:1400px;width:100%;margin:0 auto;box-sizing:border-box">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:clamp(20px,2.6vw,30px)">
-      <div style="min-width:0">
-        <h2 style="margin:0 0 8px;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(32px,3.6vw,46px);line-height:1.04;letter-spacing:-0.01em;color:#142F63;text-wrap:balance">{{ galleryHeadline }}</h2>
-        <p style="margin:0;max-width:38em;font-size:clamp(15px,1.2vw,16.5px);line-height:1.55;color:#46598A;text-wrap:pretty">{{ gallerySub }}</p>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;flex:none">
-        <span style="font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#7A6E5B;white-space:nowrap">Sort</span>
-        <sc-for list="{{ sortChips }}" as="c" hint-placeholder-count="3">
-          <button type="button" onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
-        </sc-for>
-      </div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:clamp(16px,1.8vw,22px);align-items:stretch">
-      <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="6">
-        <div style="min-width:0;height:330px;perspective:1400px">
-          <div style="position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 520ms cubic-bezier(0.2,0.7,0.2,1);transform:{{ t.rot }}">
-
-            <button type="button" onClick="{{ t.flip }}" aria-label="{{ t.frontLabel }}" style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;min-width:0;display:flex;flex-direction:column;text-align:left;font-family:'DM Sans',sans-serif;padding:0;border:1px solid #EAE1D4;border-radius:18px;background:#FFFFFF;overflow:hidden;cursor:pointer;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -32px rgba(2,21,54,0.28);transition:border-color 140ms ease" style-hover="border-color:#8FA3CC">
-              <sc-if value="{{ t.hasPhoto }}" hint-placeholder-val="{{ false }}">
-                <span style="display:block;flex:none;height:184px;overflow:hidden;background:#021536">
-                  <img src="{{ t.photo }}" alt="{{ t.alt }}" style="width:100%;height:100%;object-fit:cover;object-position:58% 50%;display:block;transform:scale(1.16)">
-                </span>
-              </sc-if>
-              <sc-if value="{{ t.noPhoto }}" hint-placeholder-val="{{ true }}">
-                <span style="display:flex;flex:none;height:184px;background:repeating-linear-gradient(135deg,#E9DFCE 0 9px,#F2EADC 9px 18px);align-items:center;justify-content:center">
-                  <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.1em;color:#8B7F6B">{{ t.slot }}</span>
-                </span>
-              </sc-if>
-              <span style="flex:1;padding:16px 20px 18px;display:flex;flex-direction:column;gap:8px">
-                <span style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#8A7C66">{{ t.tag }}</span>
-                <span style="font-family:'Instrument Serif',Georgia,serif;font-size:23px;line-height:1.12;color:#142F63;text-wrap:pretty">{{ t.title }}</span>
-              </span>
-            </button>
-
-            <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);border-radius:18px;background:#021536;border:1px solid #021536;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -32px rgba(2,21,54,0.28);padding:22px 22px 20px;display:flex;flex-direction:column;gap:12px;overflow:hidden">
-              <p style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-size:21px;line-height:1.14;color:#F8F1E7;text-wrap:pretty">{{ t.title }}</p>
-              <p style="margin:0;font-size:14.5px;line-height:1.55;color:#C3D2ED;text-wrap:pretty">{{ t.hook }}</p>
-              <div style="margin-top:auto;display:flex;flex-direction:column;gap:7px;font-size:13px;color:#A8BBE0;font-variant-numeric:tabular-nums">
-                <span style="display:flex;justify-content:space-between;gap:10px;border-top:1px solid rgba(243,234,224,0.16);padding-top:7px"><span>Time</span><span style="color:#EFE7DC">{{ t.time }}</span></span>
-                <span style="display:flex;justify-content:space-between;gap:10px;border-top:1px solid rgba(243,234,224,0.16);padding-top:7px"><span>Cost</span><span style="color:#EFE7DC">{{ t.cost }}</span></span>
-                <span style="display:flex;justify-content:space-between;gap:10px;border-top:1px solid rgba(243,234,224,0.16);padding-top:7px"><span>Where</span><span style="color:#EFE7DC">{{ t.where }}</span></span>
-              </div>
-              <div style="display:flex;gap:8px;margin-top:4px">
-                <button type="button" onClick="{{ t.pick }}" style="flex:1;font-family:'DM Sans',sans-serif;font-size:14.5px;font-weight:500;color:#10204A;background:#FFC58A;border:none;border-radius:999px;padding:12px 16px;cursor:pointer;transition:background 140ms ease" style-hover="background:#FFD9B3">How it goes</button>
-                <button type="button" onClick="{{ t.flip }}" style="font-family:'DM Sans',sans-serif;font-size:14.5px;color:#F3EAE0;background:none;border:1px solid rgba(243,234,224,0.45);border-radius:999px;padding:12px 16px;cursor:pointer;white-space:nowrap" style-hover="border-color:#F3EAE0">Back</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </sc-for>
-    </div>
-
-    <p style="margin:clamp(22px,2.6vw,30px) 2px 0;font-size:13.5px;line-height:1.6;color:#46598A">{{ moreNote }}</p>
-  </main>
-</div>
-</sc-if>
-
-<sc-if value="{{ isIdea }}" hint-placeholder-val="{{ false }}">
-<div data-screen-label="04 One idea" style="min-height:100vh;display:flex;flex-direction:column;background:#F6F1E8">
-  <header style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,60px);border-bottom:1px solid #E7DECF">
-    <button type="button" onClick="{{ goHome }}" style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;background:none;border:none;padding:0;cursor:pointer;color:#2F4C8E">tonight<span style="color:#E9A961">.</span></button>
-    <button type="button" onClick="{{ goOptions }}" style="font-family:'DM Sans',sans-serif;font-size:14px;color:#46598A;background:none;border:1px solid #DCD3C4;border-radius:999px;padding:8px 16px;white-space:nowrap;cursor:pointer" style-hover="color:#142F63;border-color:#8FA3CC">&larr; All ideas</button>
-  </header>
-
-  <main style="flex:1;padding:clamp(26px,3.4vw,44px) clamp(20px,4vw,60px) 56px;max-width:900px;width:100%;margin:0 auto;box-sizing:border-box">
-    <section style="min-width:0;border:1px solid #EAE1D4;border-radius:22px;background:#FFFFFF;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -30px rgba(2,21,54,0.22);padding:clamp(22px,2.4vw,34px)">
-      <p style="margin:0 0 14px;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#2B4680">How this one goes</p>
-      <h2 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(30px,3.2vw,42px);line-height:1.06;letter-spacing:-0.01em;color:#142F63;text-wrap:pretty">{{ detail.title }}</h2>
+  <main style="flex:1;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,2.6vw,36px);padding:clamp(24px,3.2vw,40px) clamp(20px,4vw,60px) 48px;max-width:1400px;width:100%;margin:0 auto;box-sizing:border-box;align-items:start">
+    <section style="min-width:0;border:1px solid #EAE1D4;border-radius:22px;background:#FFFFFF;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -30px rgba(2,21,54,0.22);padding:clamp(22px,2.4vw,32px)">
+      <p style="margin:0 0 14px;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#2B4680">One way to do it</p>
+      <h2 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(26px,2.6vw,34px);line-height:1.08;letter-spacing:-0.01em;color:#142F63;text-wrap:pretty">{{ detail.title }}</h2>
       <div style="display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 20px">
         <span style="font-size:13.5px;color:#1F3665;background:#FCE7CE;border-radius:999px;padding:6px 13px;white-space:nowrap">{{ detail.timeLabel }}</span>
         <span style="font-size:13.5px;color:#1F3665;background:#FCE7CE;border-radius:999px;padding:6px 13px;white-space:nowrap">{{ detail.costLabel }}</span>
         <span style="font-size:13.5px;color:#1F3665;background:#FCE7CE;border-radius:999px;padding:6px 13px;white-space:nowrap">{{ detail.where }}</span>
       </div>
-      <p style="margin:0 0 22px;font-size:16px;line-height:1.65;color:#1F3665;max-width:44em;text-wrap:pretty">{{ detail.blurb }}</p>
+      <p style="margin:0 0 22px;font-size:15.5px;line-height:1.6;color:#1F3665;max-width:44em;text-wrap:pretty">{{ detail.blurb }}</p>
       <p style="margin:0 0 12px;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#46598A">How the night goes</p>
       <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px">
         <sc-for list="{{ detail.steps }}" as="s" hint-placeholder-count="3">
-          <li style="display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.55;color:#1F3665">
+          <li style="display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;color:#1F3665">
             <span style="flex:none;width:22px;height:22px;border-radius:999px;background:#FFC58A;color:#142F63;font-size:12.5px;font-weight:500;display:flex;align-items:center;justify-content:center;margin-top:2px">{{ s.n }}</span>
             <span>{{ s.text }}</span>
           </li>
         </sc-for>
       </ol>
+    </section>
+
+    <section style="min-width:0;display:flex;flex-direction:column;gap:14px">
+      <div style="min-width:0">
+        <h3 style="margin:0 0 6px;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(21px,1.8vw,26px);line-height:1.1;color:#142F63">Other ways to spend tonight</h3>
+        <p style="margin:0;font-size:14px;line-height:1.5;color:#46598A">Tap one to see how it goes. Nothing here is picked for you.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ alternatives }}" as="a" hint-placeholder-count="3">
+          <button type="button" onClick="{{ a.pick }}" style="text-align:left;font-family:'DM Sans',sans-serif;border:1px solid #EAE1D4;background:#FFFFFF;border-radius:18px;padding:16px 18px;cursor:pointer;display:flex;flex-direction:column;gap:7px;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -34px rgba(2,21,54,0.24);transition:border-color 140ms ease,transform 140ms ease" style-hover="border-color:#8FA3CC;transform:translateY(-2px)">
+            <span style="font-family:'Instrument Serif',Georgia,serif;font-size:21px;line-height:1.14;color:#142F63">{{ a.title }}</span>
+            <span style="font-size:14px;line-height:1.45;color:#46598A">{{ a.hook }}</span>
+            <span style="font-size:12.5px;color:#7A6E5B;font-variant-numeric:tabular-nums">{{ a.meta }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <p style="margin:0;font-size:13.5px;line-height:1.55;color:#46598A">{{ moreNote }}</p>
     </section>
   </main>
 </div>
@@ -238,7 +189,7 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;sortBy&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;A mix&quot;,&quot;options&quot;:[&quot;A mix&quot;,&quot;Quickest first&quot;,&quot;Cheapest first&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Options screen&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;sortBy&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;A mix&quot;,&quot;options&quot;:[&quot;A mix&quot;,&quot;Quickest first&quot;,&quot;Cheapest first&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Options screen&quot;},&quot;alternativesCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:3,&quot;min&quot;:2,&quot;max&quot;:3,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Options screen&quot;}}">
 var IDEAS = [
   { id:'overlook', tags:['Outdoors','Low-key'], title:'Stargaze at the Squaw Peak overlook', area:'Provo', mins:120, timeLabel:'About 2 hours', low:0, high:6, costLabel:'$0–6 (gas)', where:'Up Provo Canyon',
     hook:'Fifteen minutes up the canyon and the whole valley is under you.',
@@ -279,13 +230,6 @@ var IDEAS = [
     steps:['Get on the trail near Geneva Road and head west toward the lake.','Ride until the trail opens up at the water and stop there.','Turn around when the light goes orange — the ride back is the good part.'] }
 ];
 
-var PHOTOS = { overlook:'img/overlook.png', velour:'img/carnival-card.png' };
-var ALTS = {
-  overlook:'Valley lights seen from a canyon overlook at night',
-  velour:'A small lit-up venue on a night street'
-};
-var NUM = ['No','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'];
-
 var TIMES = [
   { label:'An hour', value:60 },
   { label:'2 hours', value:120 },
@@ -296,11 +240,9 @@ var AREAS = ['Provo','Orem','North county','Anywhere in the county'];
 var INTERESTS = ['Outdoors','Food & treats','Live music','Books & film','Games','Low-key'];
 
 class Component extends DCLogic {
-  state = { screen:'landing', time:180, budget:40, area:'Provo', interests:[], chosen:null, sort:null, flipped:null };
+  state = { screen:'landing', time:180, budget:40, area:'Provo', interests:[], chosen:null };
 
   go = (screen) => this.setState({ screen });
-
-  sortMode() { return this.state.sort || this.props.sortBy || 'A mix'; }
 
   matches() {
     const { time, budget, area, interests } = this.state;
@@ -309,7 +251,7 @@ class Component extends DCLogic {
       i.low <= budget &&
       (area === 'Anywhere in the county' || i.area === area) &&
       (interests.length === 0 || i.tags.some(t => interests.indexOf(t) !== -1)));
-    const sort = this.sortMode();
+    const sort = this.props.sortBy || 'A mix';
     if (sort.indexOf('Quickest') === 0) list = list.slice().sort((a,b) => a.mins - b.mins);
     if (sort.indexOf('Cheapest') === 0) list = list.slice().sort((a,b) => a.high - b.high);
     return list;
@@ -325,8 +267,9 @@ class Component extends DCLogic {
   renderVals() {
     const s = this.state;
     const list = this.matches();
-    const sortNow = this.sortMode();
     const detail = list.find(i => i.id === s.chosen) || list[0] || IDEAS[0];
+    const others = list.filter(i => i.id !== detail.id);
+    const altCount = this.props.alternativesCount ?? 3;
     const budgetLabel = s.budget === 0 ? 'Free only' : (s.budget >= 75 ? '$75+' : '$' + s.budget);
     const n = list.length;
 
@@ -334,30 +277,14 @@ class Component extends DCLogic {
       isLanding: s.screen === 'landing',
       isSet: s.screen === 'set',
       isOptions: s.screen === 'options',
-      isIdea: s.screen === 'idea',
       goHome: () => this.go('landing'),
       goSet: () => this.go('set'),
       goOptions: () => this.setState({ screen:'options', chosen:null }),
 
-      galleryHeadline: n === 0 ? 'Nothing fits that yet' : (n === 1 ? 'One way to spend tonight' : NUM[n] + ' ways to spend tonight'),
-      gallerySub: n === 0
-        ? 'Nudge the time or the budget up a little and things start showing up.'
-        : 'All of these fit your time, budget, and area. Tap a card to flip it over for the details.',
-      sortChips: ['A mix','Quickest','Cheapest'].map(label => ({
-        label,
-        style: this.chip(sortNow === label),
-        pick: () => this.setState({ sort: label })
-      })),
-      tiles: list.map(i => ({
-        title: i.title, hook: i.hook, tag: i.tags[0],
-        time: i.timeLabel.replace('About ',''), cost: i.costLabel, where: i.where,
-        hasPhoto: !!PHOTOS[i.id], noPhoto: !PHOTOS[i.id],
-        photo: PHOTOS[i.id], alt: ALTS[i.id] || '',
-        slot: 'photo — ' + i.area.toLowerCase(),
-        rot: s.flipped === i.id ? 'rotateY(180deg)' : 'rotateY(0deg)',
-        frontLabel: 'Flip for details: ' + i.title,
-        flip: () => this.setState(st => ({ flipped: st.flipped === i.id ? null : i.id })),
-        pick: () => this.setState({ screen:'idea', chosen: i.id, flipped:null })
+      alternatives: others.slice(0, altCount).map(i => ({
+        title: i.title, hook: i.hook,
+        meta: i.timeLabel.replace('About ','') + '  ·  ' + i.costLabel + '  ·  ' + i.where,
+        pick: () => this.setState({ chosen: i.id })
       })),
 
       timeChips: TIMES.map(t => ({
@@ -401,7 +328,9 @@ class Component extends DCLogic {
         where: detail.where, blurb: detail.blurb,
         steps: detail.steps.map((text,idx) => ({ n: idx+1, text }))
       },
-      moreNote: 'Want different ones? Change the time, money, or area and look again.'
+      moreNote: others.length > altCount
+        ? 'There are ' + (others.length - altCount) + ' more that fit tonight — widen the time or budget to see them.'
+        : 'Want different ones? Change the time, money, or area and look again.'
     };
   }
 }
