@@ -9,23 +9,23 @@ A three-screen interactive mock-up: tell it how much time, money, and where you 
 
 ## 1. Need, persona, capability, value
 
-**Need.** On a free weeknight, couples want to spend the time together, not spend it deciding — but they don't know which specific idea actually fits tonight's time, money, and location. They end up scrolling apps or debating options until the window closes, and default to the same restaurant or the couch.
+**Need.** When it's time to plan a date, the energy to come up with something new is already gone, so they default to the same few spots or an old saved post.
 
-**Persona.** Dates locally once or twice a week, has one to three free hours after work on a weeknight, keeps date spending under about $40, and is deciding the same evening — not planning days ahead.
+**Persona.** Works and takes classes on a shifting weekly schedule with a tight, variable budget, and is often deciding the night before whether a date is doable or suddenly free with no plan for the evening.
 
-**Capability.** Get one specific, ready-to-do idea — with the steps for how the night goes — that fits tonight's time, budget, and area, plus a couple of backups without starting over.
+**Capability.** Find a specific date idea that fits their time, budget, and location right now.
 
-**Fundamental value.** *Certainty.* Replacing "what should we do?" with one concrete plan protects the time together instead of spending it on logistics.
+**Fundamental value.** *Confidence.* The user gets to enjoy the date, rather than spend it wondering whether they picked the right plan.
 
 ---
 
 ## 2. The three screens
 
-| # | Screen | Job | Why it earned a slot | Design question it answers |
-|---|--------|-----|----------------------|------------------------------|
-| 1 | **Landing** | Signal the value ("stress less, connect more") and the capability ("set your night, see your options") before anything else competes for attention. | It's the only screen every visitor is guaranteed to see; if the payoff isn't obvious in the first five seconds, nothing downstream matters. | Does the headline + subhead communicate the value and capability before the visitor reads any supporting copy? |
-| 2 | **Set your night** | Prove the capability is real by showing the match count and a live preview update as time, budget, interests, and area are set. | Without this, "fits what you actually have" is just a claim. This is the screen where the app visibly adapts to the person's real constraints. | Do the input groups read as one related decision (Gestalt proximity/common region), and does the live preview prove the app is already working before the user commits? |
-| 3 | **Your options** | Deliver the payoff: one idea in full detail (time, cost, where, steps) with 2–3 alternates visible on the same screen — pick one, still see the others. | This is the screen that actually demonstrates the capability + value together: a specific plan, not a generic list, and the user's choice is never hidden from the alternative it was weighed against. | Can a first-time viewer tell in one glance that this is a usable plan (not a browsing gallery), and that the other options are still one click away? |
+| Screen | Job | Why it earned the slot | Design question |
+|---|---|---|---|
+| **01 Landing** | Signal the core value and primary capability in five seconds, nothing competing. | The only screen a first-timer sees before deciding whether to continue. | Capability: five-second test. |
+| **02 Set your night** | Show time, budget, and location being entered and specific ideas coming back. | It's the mechanism the whole app promises; without it the other two are a headline and a result. | Capability: "What would you tap first?" |
+| **03 Your options** | One idea in detail with visible alternates beside it. | Where need, capability, and value meet, and where "guide not verdict" either holds or breaks. | Value: "What one or two words describe the value?" |
 
 ---
 
