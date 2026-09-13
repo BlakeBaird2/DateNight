@@ -139,7 +139,10 @@
 <sc-if value="{{ isOptions }}" hint-placeholder-val="{{ false }}">
 <div data-screen-label="03 Your options" style="min-height:100vh;display:flex;flex-direction:column;background:#F6F1E8">
   <header style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,60px);border-bottom:1px solid #E7DECF">
-    <button type="button" onClick="{{ goHome }}" style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;background:none;border:none;padding:0;cursor:pointer;color:#2F4C8E">tonight<span style="color:#E9A961">.</span></button>
+    <div style="display:flex;align-items:center;gap:14px">
+      <button type="button" onClick="{{ goHome }}" style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;background:none;border:none;padding:0;cursor:pointer;color:#2F4C8E">tonight<span style="color:#E9A961">.</span></button>
+      <span style="font-size:12.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#2B4680;white-space:nowrap">Step 2 of 2</span>
+    </div>
     <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
       <button type="button" onClick="{{ goSet }}" style="font-family:'DM Sans',sans-serif;font-size:14px;color:#46598A;background:none;border:1px solid #DCD3C4;border-radius:999px;padding:8px 16px;white-space:nowrap;cursor:pointer" style-hover="color:#142F63;border-color:#8FA3CC">{{ filterSummary }}</button>
       <button type="button" onClick="{{ goHome }}" style="font-family:'DM Sans',sans-serif;font-size:14px;color:#46598A;background:none;border:1px solid #DCD3C4;border-radius:999px;padding:8px 16px;white-space:nowrap;cursor:pointer" style-hover="color:#142F63;border-color:#8FA3CC">&larr; Back to start</button>
