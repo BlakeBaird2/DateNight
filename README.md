@@ -44,6 +44,8 @@ Written to ask later — not asked yet. Wording is aimed at the persona above (a
 
 ## 4. Design justification and first read
 
+**The affordance sentence.** The landing screen's entire job rests on one sentence — *"Set your night, see your options."* — paired with the single CTA beneath it, "Show me what's possible." Everything else on that screen (the "Stress less. Connect more." hook above it, the "Provo & Utah County" location line) exists to support that sentence, not compete with it.
+
 Opened the live URL cold, as a first-time visitor, and answered these directly:
 
 **Does the landing screen signal the capability and value before reading?**
