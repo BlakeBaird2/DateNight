@@ -44,7 +44,7 @@
 <div data-screen-label="01 Landing" style="position:relative;overflow:hidden;min-height:100vh;display:flex;flex-direction:column;background:#021536">
 
   <div style="position:absolute;left:0;right:0;bottom:0;height:min(86vh,64vw);z-index:0">
-    <img src="img/hero-sky.png" alt="A couple sitting on a car hood watching the valley lights under a starry sky" style="width:100%;height:100%;object-fit:cover;object-position:64% 78%;display:block">
+    <img src="img/hero-sky.png" alt="A couple sitting on a car hood watching the valley lights under a starry sky" style="width:100%;height:100%;object-fit:cover;object-position:64% 60%;display:block">
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,#021536 0%,rgba(2,21,54,0.93) 7%,rgba(2,21,54,0.74) 15%,rgba(2,21,54,0.52) 24%,rgba(2,21,54,0.32) 33%,rgba(2,21,54,0.17) 42%,rgba(2,21,54,0.07) 51%,rgba(2,21,54,0) 62%)"></div>
     <div style="position:absolute;inset:0;background:linear-gradient(90deg,#021536 0%,rgba(2,21,54,0.74) 24%,rgba(2,21,54,0.18) 50%,rgba(2,21,54,0) 66%)"></div>
   </div>
@@ -194,7 +194,7 @@
 
     <div style="height:1px;background:#E7DECF"></div>
 
-    <div class="opt-grid" style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,2.6vw,36px);align-items:start">
+    <div class="opt-grid" style="display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.55fr);gap:clamp(20px,2.6vw,36px);align-items:start">
       <section style="min-width:0;border:1px solid #EAE1D4;border-radius:22px;background:#FFFFFF;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -30px rgba(2,21,54,0.22);padding:clamp(22px,2.4vw,32px)">
         <p style="margin:0 0 14px;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#2B4680">One way to do it</p>
         <h2 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(26px,2.6vw,34px);line-height:1.08;letter-spacing:-0.01em;color:#142F63;text-wrap:pretty">{{ detail.title }}</h2>
@@ -220,19 +220,24 @@
 
       <section style="min-width:0;display:flex;flex-direction:column;gap:14px">
         <div style="min-width:0">
-          <h3 style="margin:0 0 6px;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(21px,1.8vw,26px);line-height:1.1;color:#142F63">Other ways to spend tonight</h3>
-          <p style="margin:0;font-size:14px;line-height:1.5;color:#46598A">Tap one to see how it goes. Nothing here is picked for you.</p>
+          <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+            <h3 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(21px,1.8vw,26px);line-height:1.1;color:#142F63">Other ways to spend tonight</h3>
+            <span style="font-size:12.5px;font-weight:500;color:#7A6E5B;background:#EFE7DA;border-radius:999px;padding:3px 10px">{{ altTotal }}</span>
+          </div>
+          <p style="margin:6px 0 0;font-size:14px;line-height:1.5;color:#46598A">Everything else that fits your filters — tap any to open it up on the left.</p>
         </div>
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <sc-for list="{{ alternatives }}" as="a" hint-placeholder-count="3">
-            <button type="button" onClick="{{ a.pick }}" style="text-align:left;font-family:'DM Sans',sans-serif;border:1px solid #EAE1D4;background:#FFFFFF;border-radius:18px;padding:16px 18px;cursor:pointer;display:flex;flex-direction:column;gap:7px;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -34px rgba(2,21,54,0.24);transition:border-color 140ms ease,transform 140ms ease" style-hover="border-color:#8FA3CC;transform:translateY(-2px)">
-              <span style="font-family:'Instrument Serif',Georgia,serif;font-size:21px;line-height:1.14;color:#142F63">{{ a.title }}</span>
-              <span style="font-size:14px;line-height:1.45;color:#46598A">{{ a.hook }}</span>
-              <span style="font-size:12.5px;color:#7A6E5B;font-variant-numeric:tabular-nums">{{ a.meta }}</span>
+        <div class="alt-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;align-items:stretch">
+          <sc-for list="{{ alternatives }}" as="a" hint-placeholder-count="6">
+            <button type="button" onClick="{{ a.pick }}" style="text-align:left;font-family:'DM Sans',sans-serif;border:1px solid #EAE1D4;background:#FFFFFF;border-radius:16px;padding:15px 16px;cursor:pointer;display:flex;flex-direction:column;gap:6px;box-shadow:0 1px 2px rgba(2,21,54,0.04);transition:border-color 140ms ease,transform 140ms ease,box-shadow 140ms ease" style-hover="border-color:#8FA3CC;transform:translateY(-2px);box-shadow:0 16px 30px -26px rgba(2,21,54,0.5)">
+              <sc-if value="{{ a.isSeasonal }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size:10.5px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#B26B1F">{{ a.badge }}</span>
+              </sc-if>
+              <span style="font-family:'Instrument Serif',Georgia,serif;font-size:19px;line-height:1.15;color:#142F63;text-wrap:pretty">{{ a.title }}</span>
+              <span style="font-size:13.5px;line-height:1.4;color:#46598A;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">{{ a.hook }}</span>
+              <span style="margin-top:auto;padding-top:4px;font-size:12px;color:#7A6E5B;font-variant-numeric:tabular-nums">{{ a.meta }}</span>
             </button>
           </sc-for>
         </div>
-        <p style="margin:0;font-size:13.5px;line-height:1.55;color:#46598A">{{ moreNote }}</p>
       </section>
     </div>
   </main>
@@ -241,7 +246,7 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;season&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Auto (by date)&quot;,&quot;options&quot;:[&quot;Auto (by date)&quot;,&quot;Spring&quot;,&quot;Summer&quot;,&quot;Fall&quot;,&quot;Winter&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Seasonal&quot;},&quot;sortBy&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;A mix&quot;,&quot;options&quot;:[&quot;A mix&quot;,&quot;Quickest first&quot;,&quot;Cheapest first&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Options screen&quot;},&quot;alternativesCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:3,&quot;min&quot;:2,&quot;max&quot;:3,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Options screen&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;season&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Auto (by date)&quot;,&quot;options&quot;:[&quot;Auto (by date)&quot;,&quot;Spring&quot;,&quot;Summer&quot;,&quot;Fall&quot;,&quot;Winter&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Seasonal&quot;},&quot;sortBy&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;A mix&quot;,&quot;options&quot;:[&quot;A mix&quot;,&quot;Quickest first&quot;,&quot;Cheapest first&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Options screen&quot;}}">
 // Prices and hours are realistic estimates for Utah County, not a live feed — verify before you go.
 var IDEAS = [
   // Fall features
@@ -423,7 +428,6 @@ class Component extends DCLogic {
     const list = this.matches();
     const detail = list.find(i => i.id === s.chosen) || list[0] || IDEAS[0];
     const others = list.filter(i => i.id !== detail.id);
-    const altCount = this.props.alternativesCount ?? 3;
     const budgetLabel = s.budget === 0 ? 'Free only' : (s.budget >= 120 ? '$120+' : '$' + s.budget);
     const n = list.length;
 
@@ -455,8 +459,11 @@ class Component extends DCLogic {
         pick: () => this.setState({ chosen: i.id })
       })),
 
-      alternatives: altPool.slice(0, altCount).map(i => ({
+      altTotal: altPool.length,
+      alternatives: altPool.map(i => ({
         title: i.title, hook: i.hook,
+        isSeasonal: !!i.featured,
+        badge: sMeta.label + ' pick',
         meta: i.timeLabel.replace('About ','') + '  ·  ' + i.costLabel + '  ·  ' + i.where,
         pick: () => this.setState({ chosen: i.id })
       })),
@@ -503,10 +510,7 @@ class Component extends DCLogic {
         isSeasonal: !!detail.featured,
         seasonChip: sMeta.emoji + ' ' + sMeta.label + ' pick',
         steps: detail.steps.map((text,idx) => ({ n: idx+1, text }))
-      },
-      moreNote: altPool.length > altCount
-        ? 'There are ' + (altPool.length - altCount) + ' more that fit tonight — widen the time or budget to see them.'
-        : 'Want different ones? Change the time, money, or area and look again.'
+      }
     };
   }
 }
