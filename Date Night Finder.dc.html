@@ -15,9 +15,26 @@
   body { margin:0; background:#021536; line-height:0; -webkit-font-smoothing:antialiased; }
   a { color:#FFC58A; text-decoration:none; }
   a:hover { color:#FFD9B3; }
-  input[type=range]{ accent-color:#142F63; }
+  * { box-sizing:border-box; }
+  input[type=range]{ accent-color:#3F5D9E; width:100%; height:24px; cursor:pointer; }
   @keyframes twinkleA { 0%,100% { opacity:.85 } 50% { opacity:.45 } }
   @keyframes twinkleB { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+  .seasonal-scroll::-webkit-scrollbar { height:8px; }
+  .seasonal-scroll::-webkit-scrollbar-thumb { background:rgba(2,21,54,0.16); border-radius:8px; }
+  @media (max-width:860px){
+    .opt-grid { grid-template-columns:1fr !important; }
+    .set-grid { grid-template-columns:1fr !important; }
+    .set-aside { min-height:0 !important; }
+  }
+  @media (max-width:600px){
+    .dn-header { padding:16px 18px !important; }
+    .seasonal-grid {
+      grid-auto-flow:column !important; grid-template-columns:none !important;
+      grid-auto-columns:80% !important; overflow-x:auto;
+      scroll-snap-type:x mandatory; margin:0 -18px; padding:0 18px 8px !important;
+    }
+    .seasonal-grid > * { scroll-snap-align:start; }
+  }
 </style>
 </helmet>
 
@@ -54,15 +71,17 @@
 
 <sc-if value="{{ isSet }}" hint-placeholder-val="{{ false }}">
 <div data-screen-label="02 Set your night" style="min-height:100vh;display:flex;flex-direction:column;background:#F6F1E8">
-  <header style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,60px);border-bottom:1px solid #E7DECF">
-    <button type="button" onClick="{{ goHome }}" style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;background:none;border:none;padding:0;cursor:pointer;color:#2F4C8E">tonight<span style="color:#E9A961">.</span></button>
+  <header class="dn-header" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,60px);border-bottom:1px solid #E7DECF">
+    <div style="display:flex;align-items:center;gap:14px">
+      <button type="button" onClick="{{ goHome }}" style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;background:none;border:none;padding:0;cursor:pointer;color:#2F4C8E">tonight<span style="color:#E9A961">.</span></button>
+      <span style="font-size:12.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#2B4680;white-space:nowrap">Step 1 of 2</span>
+    </div>
     <button type="button" onClick="{{ goHome }}" style="font-family:'DM Sans',sans-serif;font-size:14px;color:#46598A;background:none;border:1px solid #DCD3C4;border-radius:999px;padding:8px 16px;white-space:nowrap;cursor:pointer" style-hover="color:#142F63;border-color:#8FA3CC">&larr; Back to start</button>
   </header>
 
-  <main style="flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:clamp(24px,3.2vw,52px);padding:clamp(28px,5vh,56px) clamp(20px,4vw,60px) 64px;align-items:stretch;max-width:1400px;width:100%;margin:0 auto;box-sizing:border-box">
+  <main class="set-grid" style="flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(24px,3.2vw,52px);padding:clamp(28px,5vh,56px) clamp(20px,4vw,60px) 64px;align-items:stretch;max-width:1400px;width:100%;margin:0 auto;box-sizing:border-box">
     <section style="min-width:0;display:flex;flex-direction:column;gap:clamp(24px,3vh,34px)">
       <div style="min-width:0">
-        <p style="margin:0 0 10px;font-size:12.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#2B4680">Step 1 of 2</p>
         <h2 style="margin:0 0 10px;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(34px,4vw,50px);line-height:1.02;letter-spacing:-0.015em;color:#142F63">Set your night.</h2>
         <p style="margin:0;max-width:32em;font-size:clamp(15px,1.3vw,17px);line-height:1.55;color:#46598A;text-wrap:pretty">A few quick things. Change any of them and the ideas change with you.</p>
       </div>
@@ -82,9 +101,9 @@
             <h3 style="margin:0;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#46598A">What can you spend?</h3>
             <span style="font-family:'Instrument Serif',Georgia,serif;font-size:30px;line-height:1;color:#142F63">{{ budgetLabel }}</span>
           </div>
-          <input type="range" min="0" max="75" step="5" value="{{ budget }}" onChange="{{ setBudget }}" style="width:100%;height:22px;cursor:pointer">
+          <input type="range" min="0" max="120" step="5" value="{{ budget }}" onChange="{{ setBudget }}" style="width:100%;height:24px;cursor:pointer">
           <div style="display:flex;justify-content:space-between;font-size:12.5px;color:#586B96;margin-top:2px">
-            <span>Free</span><span>$75+</span>
+            <span>Free</span><span>$120+</span>
           </div>
         </div>
 
@@ -111,11 +130,11 @@
       </div>
     </section>
 
-    <aside style="min-width:0;display:flex;flex-direction:column;border:1px solid #021536;border-radius:22px;overflow:hidden;background:#021536;box-shadow:0 1px 2px rgba(2,21,54,0.06),0 26px 50px -30px rgba(2,21,54,0.42);min-height:clamp(480px,64vh,680px)">
-      <div style="position:relative;flex:1 1 auto;min-height:clamp(230px,32vh,340px)">
+    <aside class="set-aside" style="min-width:0;display:flex;flex-direction:column;border:1px solid #021536;border-radius:22px;overflow:hidden;background:#021536;box-shadow:0 1px 2px rgba(2,21,54,0.06),0 26px 50px -30px rgba(2,21,54,0.42);min-height:clamp(480px,64vh,680px)">
+      <div style="position:relative;flex:1 1 auto;min-height:clamp(220px,30vh,340px)">
         <img src="img/carnival-card.png" alt="Two people walking a lit-up carnival midway at night" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 48%;display:block">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,21,54,0) 34%,rgba(2,21,54,0.55) 68%,rgba(2,21,54,0.92) 88%,#021536 100%)"></div>
-        <p style="position:absolute;left:clamp(18px,2vw,26px);top:18px;margin:0;font-size:12.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#F3EAE0;text-shadow:0 2px 16px rgba(2,21,54,0.9)">Tonight in Utah County</p>
+        <p style="position:absolute;left:clamp(18px,2vw,26px);top:18px;margin:0;font-size:12.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#F3EAE0;text-shadow:0 2px 16px rgba(2,21,54,0.9)">{{ seasonKicker }}</p>
       </div>
 
       <div style="flex:none;padding:4px clamp(20px,2.2vw,30px) clamp(22px,2.6vh,28px);display:flex;flex-direction:column">
@@ -138,7 +157,7 @@
 
 <sc-if value="{{ isOptions }}" hint-placeholder-val="{{ false }}">
 <div data-screen-label="03 Your options" style="min-height:100vh;display:flex;flex-direction:column;background:#F6F1E8">
-  <header style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,60px);border-bottom:1px solid #E7DECF">
+  <header class="dn-header" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px clamp(20px,4vw,60px);border-bottom:1px solid #E7DECF">
     <div style="display:flex;align-items:center;gap:14px">
       <button type="button" onClick="{{ goHome }}" style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;background:none;border:none;padding:0;cursor:pointer;color:#2F4C8E">tonight<span style="color:#E9A961">.</span></button>
       <span style="font-size:12.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#2B4680;white-space:nowrap">Step 2 of 2</span>
@@ -149,88 +168,199 @@
     </div>
   </header>
 
-  <main style="flex:1;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,2.6vw,36px);padding:clamp(24px,3.2vw,40px) clamp(20px,4vw,60px) 48px;max-width:1400px;width:100%;margin:0 auto;box-sizing:border-box;align-items:start">
-    <section style="min-width:0;border:1px solid #EAE1D4;border-radius:22px;background:#FFFFFF;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -30px rgba(2,21,54,0.22);padding:clamp(22px,2.4vw,32px)">
-      <p style="margin:0 0 14px;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#2B4680">One way to do it</p>
-      <h2 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(26px,2.6vw,34px);line-height:1.08;letter-spacing:-0.01em;color:#142F63;text-wrap:pretty">{{ detail.title }}</h2>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 20px">
-        <span style="font-size:13.5px;color:#1F3665;background:#FCE7CE;border-radius:999px;padding:6px 13px;white-space:nowrap">{{ detail.timeLabel }}</span>
-        <span style="font-size:13.5px;color:#1F3665;background:#FCE7CE;border-radius:999px;padding:6px 13px;white-space:nowrap">{{ detail.costLabel }}</span>
-        <span style="font-size:13.5px;color:#1F3665;background:#FCE7CE;border-radius:999px;padding:6px 13px;white-space:nowrap">{{ detail.where }}</span>
+  <main style="flex:1;display:flex;flex-direction:column;gap:clamp(22px,3vw,34px);padding:clamp(24px,3.2vw,40px) clamp(20px,4vw,60px) 56px;max-width:1400px;width:100%;margin:0 auto;box-sizing:border-box">
+
+    <section style="min-width:0">
+      <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+        <h2 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(24px,2.4vw,32px);line-height:1.06;color:#142F63">{{ seasonLabel }}</h2>
+        <p style="margin:0;font-size:13.5px;line-height:1.5;color:#7A6E5B">{{ seasonNote }}</p>
       </div>
-      <p style="margin:0 0 22px;font-size:15.5px;line-height:1.6;color:#1F3665;max-width:44em;text-wrap:pretty">{{ detail.blurb }}</p>
-      <p style="margin:0 0 12px;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#46598A">How the night goes</p>
-      <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px">
-        <sc-for list="{{ detail.steps }}" as="s" hint-placeholder-count="3">
-          <li style="display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;color:#1F3665">
-            <span style="flex:none;width:22px;height:22px;border-radius:999px;background:#FFC58A;color:#142F63;font-size:12.5px;font-weight:500;display:flex;align-items:center;justify-content:center;margin-top:2px">{{ s.n }}</span>
-            <span>{{ s.text }}</span>
-          </li>
-        </sc-for>
-      </ol>
+      <sc-if value="{{ hasSeasonal }}" hint-placeholder-val="{{ true }}">
+        <div class="seasonal-grid seasonal-scroll" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+          <sc-for list="{{ seasonal }}" as="f" hint-placeholder-count="3">
+            <button type="button" onClick="{{ f.pick }}" style="text-align:left;font-family:'DM Sans',sans-serif;border:1px solid #E7C89B;background:linear-gradient(180deg,#FFF9EF,#FFFFFF);border-radius:18px;padding:16px 18px;cursor:pointer;display:flex;flex-direction:column;gap:8px;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 20px 40px -32px rgba(2,21,54,0.28);transition:border-color 140ms ease,transform 140ms ease" style-hover="border-color:#E9A961;transform:translateY(-2px)">
+              <span style="font-size:11px;font-weight:600;letter-spacing:0.11em;text-transform:uppercase;color:#B26B1F">{{ f.badge }}</span>
+              <span style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;line-height:1.14;color:#142F63;text-wrap:pretty">{{ f.title }}</span>
+              <span style="font-size:13.5px;line-height:1.45;color:#46598A">{{ f.hook }}</span>
+              <span style="font-size:12px;color:#7A6E5B;font-variant-numeric:tabular-nums">{{ f.meta }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ noSeasonal }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0;font-size:13.5px;line-height:1.55;color:#46598A;border:1px dashed #DCD3C4;border-radius:14px;padding:16px 18px;background:#FBF7F0">{{ noSeasonalNote }}</p>
+      </sc-if>
     </section>
 
-    <section style="min-width:0;display:flex;flex-direction:column;gap:14px">
-      <div style="min-width:0">
-        <h3 style="margin:0 0 6px;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(21px,1.8vw,26px);line-height:1.1;color:#142F63">Other ways to spend tonight</h3>
-        <p style="margin:0;font-size:14px;line-height:1.5;color:#46598A">Tap one to see how it goes. Nothing here is picked for you.</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <sc-for list="{{ alternatives }}" as="a" hint-placeholder-count="3">
-          <button type="button" onClick="{{ a.pick }}" style="text-align:left;font-family:'DM Sans',sans-serif;border:1px solid #EAE1D4;background:#FFFFFF;border-radius:18px;padding:16px 18px;cursor:pointer;display:flex;flex-direction:column;gap:7px;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -34px rgba(2,21,54,0.24);transition:border-color 140ms ease,transform 140ms ease" style-hover="border-color:#8FA3CC;transform:translateY(-2px)">
-            <span style="font-family:'Instrument Serif',Georgia,serif;font-size:21px;line-height:1.14;color:#142F63">{{ a.title }}</span>
-            <span style="font-size:14px;line-height:1.45;color:#46598A">{{ a.hook }}</span>
-            <span style="font-size:12.5px;color:#7A6E5B;font-variant-numeric:tabular-nums">{{ a.meta }}</span>
-          </button>
-        </sc-for>
-      </div>
-      <p style="margin:0;font-size:13.5px;line-height:1.55;color:#46598A">{{ moreNote }}</p>
-    </section>
+    <div style="height:1px;background:#E7DECF"></div>
+
+    <div class="opt-grid" style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(20px,2.6vw,36px);align-items:start">
+      <section style="min-width:0;border:1px solid #EAE1D4;border-radius:22px;background:#FFFFFF;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -30px rgba(2,21,54,0.22);padding:clamp(22px,2.4vw,32px)">
+        <p style="margin:0 0 14px;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#2B4680">One way to do it</p>
+        <h2 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(26px,2.6vw,34px);line-height:1.08;letter-spacing:-0.01em;color:#142F63;text-wrap:pretty">{{ detail.title }}</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 20px">
+          <sc-if value="{{ detail.isSeasonal }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size:13.5px;color:#8A4B12;background:#F7E4C6;border-radius:999px;padding:6px 13px;white-space:nowrap;font-weight:500">{{ detail.seasonChip }}</span>
+          </sc-if>
+          <span style="font-size:13.5px;color:#1F3665;background:#FCE7CE;border-radius:999px;padding:6px 13px;white-space:nowrap">{{ detail.timeLabel }}</span>
+          <span style="font-size:13.5px;color:#1F3665;background:#FCE7CE;border-radius:999px;padding:6px 13px;white-space:nowrap">{{ detail.costLabel }}</span>
+          <span style="font-size:13.5px;color:#1F3665;background:#FCE7CE;border-radius:999px;padding:6px 13px;white-space:nowrap">{{ detail.where }}</span>
+        </div>
+        <p style="margin:0 0 22px;font-size:15.5px;line-height:1.6;color:#1F3665;max-width:44em;text-wrap:pretty">{{ detail.blurb }}</p>
+        <p style="margin:0 0 12px;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#46598A">How the night goes</p>
+        <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px">
+          <sc-for list="{{ detail.steps }}" as="s" hint-placeholder-count="3">
+            <li style="display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;color:#1F3665">
+              <span style="flex:none;width:22px;height:22px;border-radius:999px;background:#FFC58A;color:#142F63;font-size:12.5px;font-weight:500;display:flex;align-items:center;justify-content:center;margin-top:2px">{{ s.n }}</span>
+              <span>{{ s.text }}</span>
+            </li>
+          </sc-for>
+        </ol>
+      </section>
+
+      <section style="min-width:0;display:flex;flex-direction:column;gap:14px">
+        <div style="min-width:0">
+          <h3 style="margin:0 0 6px;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(21px,1.8vw,26px);line-height:1.1;color:#142F63">Other ways to spend tonight</h3>
+          <p style="margin:0;font-size:14px;line-height:1.5;color:#46598A">Tap one to see how it goes. Nothing here is picked for you.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ alternatives }}" as="a" hint-placeholder-count="3">
+            <button type="button" onClick="{{ a.pick }}" style="text-align:left;font-family:'DM Sans',sans-serif;border:1px solid #EAE1D4;background:#FFFFFF;border-radius:18px;padding:16px 18px;cursor:pointer;display:flex;flex-direction:column;gap:7px;box-shadow:0 1px 2px rgba(2,21,54,0.04),0 22px 44px -34px rgba(2,21,54,0.24);transition:border-color 140ms ease,transform 140ms ease" style-hover="border-color:#8FA3CC;transform:translateY(-2px)">
+              <span style="font-family:'Instrument Serif',Georgia,serif;font-size:21px;line-height:1.14;color:#142F63">{{ a.title }}</span>
+              <span style="font-size:14px;line-height:1.45;color:#46598A">{{ a.hook }}</span>
+              <span style="font-size:12.5px;color:#7A6E5B;font-variant-numeric:tabular-nums">{{ a.meta }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <p style="margin:0;font-size:13.5px;line-height:1.55;color:#46598A">{{ moreNote }}</p>
+      </section>
+    </div>
   </main>
 </div>
 </sc-if>
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;sortBy&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;A mix&quot;,&quot;options&quot;:[&quot;A mix&quot;,&quot;Quickest first&quot;,&quot;Cheapest first&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Options screen&quot;},&quot;alternativesCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:3,&quot;min&quot;:2,&quot;max&quot;:3,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Options screen&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;season&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Auto (by date)&quot;,&quot;options&quot;:[&quot;Auto (by date)&quot;,&quot;Spring&quot;,&quot;Summer&quot;,&quot;Fall&quot;,&quot;Winter&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Seasonal&quot;},&quot;sortBy&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;A mix&quot;,&quot;options&quot;:[&quot;A mix&quot;,&quot;Quickest first&quot;,&quot;Cheapest first&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Options screen&quot;},&quot;alternativesCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:3,&quot;min&quot;:2,&quot;max&quot;:3,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Options screen&quot;}}">
+// Prices and hours are realistic estimates for Utah County, not a live feed — verify before you go.
 var IDEAS = [
-  { id:'overlook', tags:['Outdoors','Low-key'], title:'Stargaze at the Squaw Peak overlook', area:'Provo', mins:120, timeLabel:'About 2 hours', low:0, high:6, costLabel:'$0–6 (gas)', where:'Up Provo Canyon',
+  // Fall features
+  { id:'cornbellys', tags:['Outdoors','Games'], seasons:['fall'], featured:true, title:'Get lost in the corn maze at Cornbelly’s', area:'North county', mins:180, timeLabel:'About 3 hours', low:50, high:70, costLabel:'$50–70 for two', where:'Thanksgiving Point, Lehi',
+    hook:'A giant corn maze, pig races, and a caramel apple to split.',
+    blurb:'Cornbelly’s takes over Thanksgiving Point every fall with a huge corn maze, slides, and enough small attractions to fill a whole evening. Go right at dusk so the maze gets a little eerie.',
+    steps:['Buy tickets online ahead — weekend nights sell out at the gate.','Do the big maze first while you still have some light to cheat by.','Split a caramel apple and catch the pig races before you leave.'] },
+  { id:'hauntedforest', tags:['Outdoors'], seasons:['fall'], featured:true, title:'Walk the Haunted Forest in American Fork', area:'North county', mins:120, timeLabel:'About 2 hours', low:64, high:80, costLabel:'$64–80 for two', where:'American Fork',
+    hook:'Half a mile of actors in the dark and a good excuse to grab an arm.',
+    blurb:'The Haunted Forest is Utah County’s big outdoor haunt — a long trail through the trees with sets and live actors. It is genuinely startling, which is the whole point on a date.',
+    steps:['Buy timed tickets online; the line moves faster than the walk-up.','Wear real shoes — the trail is dirt and roots.','Debrief the scariest part over fries on the way home.'] },
+  { id:'hauntedcircus', tags:['Games'], seasons:['fall'], featured:true, title:'Brave the Strangling Brothers Haunted Circus', area:'North county', mins:90, timeLabel:'About 90 minutes', low:44, high:60, costLabel:'$44–60 for two', where:'American Fork',
+    hook:'Clowns, mazes, and a 3D funhouse that wrecks your depth perception.',
+    blurb:'A circus-themed haunt with a few attractions on one lot. The 3D maze with the glasses is disorienting in the best way and gives you plenty to laugh about after.',
+    steps:['Grab the combo ticket for all the attractions.','Do the 3D funhouse last so the glasses don’t ruin the rest.','Rank the clowns worst to least-worst in the car.'] },
+  { id:'rowleys', tags:['Outdoors','Food & treats'], seasons:['fall'], featured:true, title:'Cider and the pumpkin patch at Rowley’s Red Barn', area:'South county', mins:120, timeLabel:'About 2 hours', low:18, high:34, costLabel:'$18–34', where:'Santaquin',
+    hook:'Fresh cider donuts, a hay ride, and a field of pumpkins to argue over.',
+    blurb:'Rowley’s Red Barn down in Santaquin does a proper fall festival — cider, donuts, a corn box, and a pumpkin patch. A low-key, daylight-friendly one if a full haunt is too much.',
+    steps:['Get there before dark for the hay ride and the patch.','Split a bag of cider donuts, no rationing.','Each pick the other person a pumpkin and carve them later.'] },
+  // Winter features
+  { id:'sundancecocoa', tags:['Low-key','Food & treats'], seasons:['winter','fall'], featured:true, title:'Hot cocoa by the fire at Sundance', area:'Provo', mins:120, timeLabel:'About 2 hours', low:8, high:24, costLabel:'$8–24', where:'Sundance, Provo Canyon',
+    hook:'The drive up the canyon, then cocoa on the deck with the pines.',
+    blurb:'Sundance lets you sit by the fire on the deck with a cocoa even if you are not skiing. The canyon drive at night is half the date.',
+    steps:['Drive up Provo Canyon toward Sundance as the light goes.','Order cocoa and grab a spot by the outdoor fire.','Walk the little art-shack loop before heading back down.'] },
+  { id:'sledding', tags:['Outdoors'], seasons:['winter'], featured:true, title:'Sled Rock Canyon Park, then thaw out with cocoa', area:'Provo', mins:90, timeLabel:'About 90 minutes', low:0, high:10, costLabel:'Free–$10', where:'Rock Canyon Park, Provo',
+    hook:'A cheap sled, a good hill, and a thermos in the car.',
+    blurb:'Rock Canyon Park at the mouth of the canyon has a hill that is just steep enough. Bring a dollar-store sled and a thermos and you have a whole date for pocket change.',
+    steps:['Grab a cheap sled and fill a thermos before you go.','Race the hill best of five.','Warm up in the car with the cocoa and name a winner.'] },
+  { id:'peaksice', tags:['Games'], seasons:['winter'], featured:true, title:'Public skate at the Peaks Ice Arena', area:'Provo', mins:90, timeLabel:'About 90 minutes', low:16, high:26, costLabel:'$16–26 with skates', where:'Peaks Ice Arena, Provo',
+    hook:'The 2002 Olympic rink, open skate, a lot of clutching each other.',
+    blurb:'The Peaks hosted hockey in the 2002 Olympics and runs public-skate sessions most evenings. Rentals are cheap and neither of you has to be good for it to be fun.',
+    steps:['Check the public-skate schedule — it changes daily.','Rent skates and do one lap on the wall, then let go.','Split something warm from the snack bar after.'] },
+  { id:'riverwoodslights', tags:['Low-key'], seasons:['winter'], featured:true, title:'Christmas lights walk at The Riverwoods', area:'Provo', mins:60, timeLabel:'About an hour', low:0, high:14, costLabel:'Free–$14', where:'The Riverwoods, Provo',
+    hook:'Every tree wrapped in lights, cocoa in hand, no ticket needed.',
+    blurb:'The Riverwoods strings lights through the whole plaza in December. It is free to walk, with cocoa and dessert on-site for when you get cold.',
+    steps:['Park at the north end and walk the loop slowly.','Find the biggest light tree for the obligatory photo.','End at a dessert spot in the plaza.'] },
+  // Spring features
+  { id:'tulipfestival', tags:['Outdoors'], seasons:['spring'], featured:true, title:'The Tulip Festival at Ashton Gardens', area:'North county', mins:150, timeLabel:'About 2.5 hours', low:40, high:60, costLabel:'$40–60 for two', where:'Thanksgiving Point, Lehi',
+    hook:'A quarter-million tulips and the best photos you’ll take all spring.',
+    blurb:'Ashton Gardens plants hundreds of thousands of tulips every April. A proper stroll-and-talk date, and the waterfall garden at the bottom is worth the whole walk.',
+    steps:['Go on a weekday to dodge the weekend crowds.','Walk down to the waterfall and back up the far side.','Trade phones and take one good photo of each other.'] },
+  { id:'fifthwater', tags:['Outdoors'], seasons:['spring','summer','fall'], featured:true, title:'Soak at Fifth Water Hot Springs', area:'South county', mins:300, timeLabel:'Half a day', low:0, high:10, costLabel:'Free (gas + parking)', where:'Spanish Fork Canyon',
+    hook:'A two-mile hike to turquoise hot pools under a waterfall.',
+    blurb:'The Fifth Water trail up Diamond Fork is about two miles each way to natural hot pools below a waterfall. Go with daylight to spare and bring water shoes.',
+    steps:['Start early — the trailhead lot fills by mid-morning.','Hike in, then test the pools from cool to hot until one is right.','Pack out everything and grab burgers in Spanish Fork after.'] },
+  // Summer features
+  { id:'sevenpeaks', tags:['Outdoors','Games'], seasons:['summer'], featured:true, title:'Cool off at Seven Peaks Waterpark', area:'Provo', mins:180, timeLabel:'About 3 hours', low:50, high:80, costLabel:'$50–80 for two', where:'Provo',
+    hook:'Slides, the wave pool, and zero chance of an awkward silence.',
+    blurb:'Seven Peaks is Provo’s big summer waterpark. An afternoon of slides and the lazy river is the easiest way to spend a hot day together without overthinking it.',
+    steps:['Buy tickets online — day passes beat the gate price.','Hit the big slides first, before the line builds.','Float the lazy river twice and call it.'] },
+  { id:'paddleboard', tags:['Outdoors'], seasons:['summer'], featured:true, title:'Paddleboard at sunset on Utah Lake', area:'Provo', mins:120, timeLabel:'About 2 hours', low:30, high:50, costLabel:'$30–50 rental', where:'Utah Lake, West Provo',
+    hook:'Flat evening water, a pink sky, and one of you definitely falling in.',
+    blurb:'Rent boards near the harbor and paddle out as the sun drops. The water is usually glassy in the evening and the whole west sky lights up over the lake.',
+    steps:['Reserve boards for the last slot before sunset.','Paddle past the no-wake buoys and just float.','Race back to the dock — loser buys the ice cream.'] },
+  { id:'freedomfestival', tags:['Outdoors','Food & treats'], seasons:['summer'], featured:true, title:'Freedom Festival carnival and fireworks', area:'Provo', mins:180, timeLabel:'About 3 hours', low:20, high:40, costLabel:'$20–40', where:'Downtown Provo',
+    hook:'Carnival rides, fair food, and fireworks over the Provo sky.',
+    blurb:'Provo’s Freedom Festival around the Fourth runs a carnival downtown and a big fireworks show. Split the fair food and stake out a lawn before dark.',
+    steps:['Come hungry and share three fair foods instead of a meal.','Ride the Ferris wheel while the light is still good.','Claim a grass spot forty minutes before the fireworks.'] },
+  // Any season
+  { id:'overlook', tags:['Outdoors','Low-key'], seasons:['spring','summer','fall'], title:'Stargaze at the Squaw Peak overlook', area:'Provo', mins:120, timeLabel:'About 2 hours', low:0, high:6, costLabel:'$0–6 (gas)', where:'Up Provo Canyon',
     hook:'Fifteen minutes up the canyon and the whole valley is under you.',
     blurb:'Squaw Peak Road climbs out of Provo Canyon and the first big turnout looks straight down at the valley lights. On a weeknight you will usually have it to yourselves. Bring a blanket — it drops ten degrees up there.',
-    steps:['Grab a blanket and something warm to drink on the way out of town.','Take US-189 into Provo Canyon and turn up Squaw Peak Road to the first wide turnout.','Give your eyes twenty minutes to adjust, then start naming things you can see from up there.'] },
-  { id:'bridalveil', tags:['Outdoors','Low-key'], title:'Bridal Veil Falls after dark, thermos in hand', area:'Provo', mins:90, timeLabel:'About 90 minutes', low:0, high:5, costLabel:'Free–$5', where:'Provo Canyon',
+    steps:['Grab a blanket and something warm to drink on the way out of town.','Take US-189 into Provo Canyon and turn up Squaw Peak Road to the first wide turnout.','Give your eyes twenty minutes to adjust, then start naming what you can see.'] },
+  { id:'bridalveil', tags:['Outdoors','Low-key'], seasons:['spring','summer','fall'], title:'Bridal Veil Falls after dark, thermos in hand', area:'Provo', mins:90, timeLabel:'About 90 minutes', low:0, high:5, costLabel:'Free–$5', where:'Provo Canyon',
     hook:'A short paved walk, loud water, and almost nobody there at night.',
     blurb:'The paved path from the lower lot to the falls is ten minutes each way and lit enough to feel easy. At night the sound does most of the work, and you can sit on the rocks until you get cold.',
-    steps:['Fill a thermos with cocoa before you leave.','Park in the lower Bridal Veil lot and take the paved path toward the falls.','Sit on the flat rocks near the base until the cold wins, then drive back down the canyon slowly.'] },
-  { id:'pioneer', tags:['Books & film','Low-key'], title:'Pick each other a $5 book at Pioneer Book', area:'Provo', mins:60, timeLabel:'About an hour', low:6, high:14, costLabel:'$6–14', where:'Center Street, Provo',
-    hook:'Ten dollars, two strangers\u2019 books, and something to argue about.',
-    blurb:'Pioneer Book on Center Street is deep enough to get lost in for half an hour. The rule is simple: you each pick a book for the other one, five dollars or under, no explaining until you are back outside.',
-    steps:['Split up at the door and set a twenty-minute timer.','Find a book for the other person — five dollars or under, no hints.','Trade at the counter, then read the first page to each other over a treat down the block.'] },
-  { id:'lake', tags:['Outdoors','Food & treats'], title:'Sunset at Utah Lake, ice cream on the way home', area:'Provo', mins:120, timeLabel:'About 2 hours', low:9, high:16, costLabel:'$9–16', where:'West Provo',
+    steps:['Fill a thermos with cocoa before you leave.','Park in the lower Bridal Veil lot and take the paved path toward the falls.','Sit on the flat rocks near the base until the cold wins, then drive back down slowly.'] },
+  { id:'lake', tags:['Outdoors','Food & treats'], seasons:['spring','summer','fall'], title:'Sunset at Utah Lake, ice cream on the way home', area:'Provo', mins:120, timeLabel:'About 2 hours', low:9, high:16, costLabel:'$9–16', where:'West Provo',
     hook:'The best light in the county, then a cone on University Ave.',
     blurb:'Utah Lake State Park is ten minutes west of downtown and the sunset over the water is the reason people move here. Time it so you leave as the color goes, and stop for ice cream on the way back in.',
     steps:['Check what time the sun sets and leave about forty minutes before.','Pay the day-use fee at Utah Lake State Park and walk out to the marina wall.','Drive back up Center and get ice cream on University Avenue before they close.'] },
-  { id:'velour', tags:['Live music'], title:'Whoever is playing Velour on Center Street', area:'Provo', mins:180, timeLabel:'About 3 hours', low:10, high:20, costLabel:'$10–20 at the door',
-    where:'Center Street, Provo',
+  { id:'rivertrail', tags:['Outdoors'], seasons:['spring','summer','fall'], title:'Ride the Provo River Trail to the lake', area:'Orem', mins:120, timeLabel:'About 2 hours', low:0, high:0, costLabel:'Free', where:'Orem to Utah Lake',
+    hook:'Flat, paved, and quiet once the sun starts going down.',
+    blurb:'The river trail runs from Orem down to the lake with almost no road crossings. It is flat the whole way, so you can talk the entire ride, and the turnaround at the water is a natural place to stop.',
+    steps:['Get on the trail near Geneva Road and head west toward the lake.','Ride until the trail opens up at the water and stop there.','Turn around when the light goes orange — the ride back is the good part.'] },
+  { id:'aspengrove', tags:['Outdoors','Low-key'], seasons:['summer','fall'], title:'Picnic at Aspen Grove up the canyon', area:'Provo', mins:120, timeLabel:'About 2 hours', low:5, high:20, costLabel:'$5–20', where:'Aspen Grove, Provo Canyon',
+    hook:'Cooler air, tall aspens, and a blanket away from everyone.',
+    blurb:'Aspen Grove past Sundance is ten degrees cooler than the valley and full of quiet picnic spots. Pack sandwiches and a blanket and let the afternoon go slow.',
+    steps:['Grab sandwiches on the way up the canyon.','Find a spot off the road and lay the blanket out.','Walk one of the short loops before you head down.'] },
+  { id:'pioneer', tags:['Books & film','Low-key'], seasons:['all'], title:'Pick each other a $5 book at Pioneer Book', area:'Provo', mins:60, timeLabel:'About an hour', low:6, high:14, costLabel:'$6–14', where:'Center Street, Provo',
+    hook:'Ten dollars, two strangers’ books, and something to argue about.',
+    blurb:'Pioneer Book on Center Street is deep enough to get lost in for half an hour. The rule is simple: you each pick a book for the other one, five dollars or under, no explaining until you are back outside.',
+    steps:['Split up at the door and set a twenty-minute timer.','Find a book for the other person — five dollars or under, no hints.','Trade at the counter, then read the first page to each other over a treat down the block.'] },
+  { id:'velour', tags:['Live music'], seasons:['all'], title:'Whoever is playing Velour on Center Street', area:'Provo', mins:180, timeLabel:'About 3 hours', low:10, high:20, costLabel:'$10–20 at the door', where:'Center Street, Provo',
     hook:'A small room, four local bands, and no idea what you are about to hear.',
     blurb:'Velour puts on all-ages shows most weeknights and you rarely need a ticket in advance. You will not know any of the bands, which is the point — you get four short sets and a lot to talk about after.',
-    steps:['Check the marquee or the board by the door for tonight\u2019s lineup.','Pay at the door and get a spot along the wall, not the back.','Walk to the corner after the last set and rank the bands out loud.'] },
-  { id:'provobeach', tags:['Games'], title:'Two games of bowling at Provo Beach', area:'Provo', mins:120, timeLabel:'About 2 hours', low:22, high:34, costLabel:'$22–34', where:'The Riverwoods, Provo',
+    steps:['Check the marquee or the board by the door for tonight’s lineup.','Pay at the door and get a spot along the wall, not the back.','Walk to the corner after the last set and rank the bands out loud.'] },
+  { id:'provobeach', tags:['Games'], seasons:['all'], title:'Two games of bowling at Provo Beach', area:'Provo', mins:120, timeLabel:'About 2 hours', low:22, high:34, costLabel:'$22–34', where:'The Riverwoods, Provo',
     hook:'Indoors, loud, and competitive enough to keep talking easy.',
     blurb:'Provo Beach at the Riverwoods has short lanes, an arcade, and a ropes course overhead. Two games plus a round of tokens fills an evening without anybody having to be clever.',
     steps:['Get a lane for two games — weeknights are usually walk-in.','Play the second game with a made-up rule each.','Spend whatever change is left in the arcade instead of buying dinner there.'] },
-  { id:'watergardens', tags:['Books & film','Food & treats'], title:'Second-run late show at Water Gardens', area:'North county', mins:150, timeLabel:'About 2.5 hours', low:8, high:14, costLabel:'$8–14 for two', where:'Pleasant Grove',
+  { id:'fatcats', tags:['Games'], seasons:['all'], title:'Glow mini golf and arcade at Fat Cats', area:'Provo', mins:120, timeLabel:'About 2 hours', low:24, high:40, costLabel:'$24–40', where:'Provo',
+    hook:'Glow mini golf, a few lanes, and a wall of arcade games under one roof.',
+    blurb:'Fat Cats in Provo has mini golf, bowling, and an arcade, so you can bounce between them and never stall out. A good rainy-night, any-season backup.',
+    steps:['Start with the glow mini golf while it is quiet.','Bowl one quick game with bumpers, no shame.','Blow the last few dollars in the arcade.'] },
+  { id:'topgolf', tags:['Games','Food & treats'], seasons:['all'], title:'Hit a bay at Top Golf', area:'North county', mins:150, timeLabel:'About 2.5 hours', low:40, high:70, costLabel:'$40–70 for two', where:'Vineyard',
+    hook:'Heated bays, food to the table, and targets that keep score for you.',
+    blurb:'Top Golf in Vineyard is a solid all-weather date — the bays are heated, you split one by the hour, and nobody has to actually be good at golf.',
+    steps:['Reserve a bay online for the early evening — cheaper rate.','Play the closest-to-the-target game, not real golf.','Order one thing to share and keep swinging.'] },
+  { id:'classicskate', tags:['Games','Low-key'], seasons:['all'], title:'Roller skate at Classic Skating', area:'Orem', mins:120, timeLabel:'About 2 hours', low:16, high:26, costLabel:'$16–26 with skates', where:'Orem',
+    hook:'Disco lights, cheap rentals, and the couples-skate song.',
+    blurb:'Classic Skating in Orem runs evening sessions with rentals included. A little retro, a little goofy, and holding hands is basically required for balance.',
+    steps:['Check the session schedule and rent skates at the counter.','Survive one lap, then try skating backward badly.','Stay for the couples skate — that is the whole point.'] },
+  { id:'nickelcity', tags:['Games'], seasons:['all'], title:'A roll of nickels at Nickel City', area:'Orem', mins:90, timeLabel:'About 90 minutes', low:10, high:16, costLabel:'$10–16', where:'State Street, Orem',
+    hook:'Old arcade cabinets, five cents a play, tickets you will never redeem.',
+    blurb:'Everything at Nickel City runs on nickels, so ten dollars lasts much longer than it should. Skee-ball for the tie-breaker, and the ticket counter gives you something ridiculous to take home.',
+    steps:['Change ten dollars into nickels at the front.','Pick five machines each and play every one of the other person’s picks.','Settle it on skee-ball and cash the tickets in for the worst prize you can find.'] },
+  { id:'watergardens', tags:['Books & film','Food & treats'], seasons:['all'], title:'Second-run late show at Water Gardens', area:'North county', mins:150, timeLabel:'About 2.5 hours', low:8, high:14, costLabel:'$8–14 for two', where:'Pleasant Grove',
     hook:'Movies most people already saw, for a few dollars a seat.',
     blurb:'Water Gardens Cinema plays films a few weeks after everyone else for a fraction of the price, which makes a random pick feel low-stakes. Tickets and popcorn for two still land under fifteen dollars.',
     steps:['Look at the showtimes and pick the one neither of you planned to see.','Buy tickets at the window — the late show is rarely full.','Get the small popcorn. Argue about the ending in the parking lot.'] },
-  { id:'nickelcity', tags:['Games'], title:'A roll of nickels at Nickel City', area:'Orem', mins:90, timeLabel:'About 90 minutes', low:10, high:16, costLabel:'$10–16', where:'State Street, Orem',
-    hook:'Old arcade cabinets, five cents a play, tickets you will never redeem.',
-    blurb:'Everything at Nickel City runs on nickels, so ten dollars lasts much longer than it should. Skee-ball for the tie-breaker, and the ticket counter gives you something ridiculous to take home.',
-    steps:['Change ten dollars into nickels at the front.','Pick five machines each and play every one of the other person\u2019s picks.','Settle it on skee-ball and cash the tickets in for the worst prize you can find.'] },
-  { id:'rivertrail', tags:['Outdoors'], title:'Ride the Provo River Trail to the lake', area:'Orem', mins:120, timeLabel:'About 2 hours', low:0, high:0, costLabel:'Free', where:'Orem to Utah Lake',
-    hook:'Flat, paved, and quiet once the sun starts going down.',
-    blurb:'The river trail runs from Orem down to the lake with almost no road crossings. It is flat the whole way, so you can talk the entire ride, and the turnaround at the water is a natural place to stop.',
-    steps:['Get on the trail near Geneva Road and head west toward the lake.','Ride until the trail opens up at the water and stop there.','Turn around when the light goes orange — the ride back is the good part.'] }
+  { id:'thechocolate', tags:['Food & treats','Low-key'], seasons:['all'], title:'Late-night dessert at The Chocolate', area:'Orem', mins:60, timeLabel:'About an hour', low:10, high:20, costLabel:'$10–20', where:'Orem',
+    hook:'A warm cookie-and-ice-cream skillet and a booth to talk in.',
+    blurb:'The Chocolate is a dessert-only spot built for exactly this — a shared warm dessert, a quiet booth, and no pressure to do anything but talk.',
+    steps:['Beat the after-movie rush — go before 9.','Split one skillet dessert, two spoons.','Trade the best and worst part of your week.'] },
+  { id:'rodizio', tags:['Food & treats'], seasons:['all'], title:'Go all-out at Rodizio Grill', area:'Orem', mins:120, timeLabel:'About 2 hours', low:60, high:90, costLabel:'$60–90 for two', where:'University Place, Orem',
+    hook:'Endless skewers of grilled meat and a salad bar you will overdo.',
+    blurb:'Rodizio is the splurge — Brazilian churrasco where they keep bringing skewers until you flip the card to red. Save it for a night you want to celebrate something.',
+    steps:['Go hungry and pace yourself past the salad bar.','Keep the card on green longer than feels wise.','Split one dessert even though you are full.'] }
 ];
 
 var TIMES = [
@@ -239,21 +369,42 @@ var TIMES = [
   { label:'3 hours', value:180 },
   { label:'The whole evening', value:300 }
 ];
-var AREAS = ['Provo','Orem','North county','Anywhere in the county'];
+var AREAS = ['Provo','Orem','North county','South county','Anywhere in the county'];
 var INTERESTS = ['Outdoors','Food & treats','Live music','Books & film','Games','Low-key'];
 
+var SEASONS = {
+  spring: { label:'Spring', emoji:'\u{1F337}', note:'blossoms, drying trails, and longer evenings' },
+  summer: { label:'Summer', emoji:'☀️', note:'lake nights, canyon shade, and late sun' },
+  fall:   { label:'Fall',   emoji:'\u{1F342}', note:'corn mazes, haunts, and color up the canyon' },
+  winter: { label:'Winter', emoji:'❄️', note:'cocoa, lights, and snow up the canyon' }
+};
+function currentSeason() {
+  var m = new Date().getMonth();
+  if (m === 11 || m === 0 || m === 1) return 'winter';
+  if (m >= 2 && m <= 4) return 'spring';
+  if (m >= 5 && m <= 7) return 'summer';
+  return 'fall';
+}
+
 class Component extends DCLogic {
-  state = { screen:'landing', time:180, budget:40, area:'Provo', interests:[], chosen:null };
+  state = { screen:'landing', time:180, budget:60, area:'Anywhere in the county', interests:[], chosen:null };
 
   go = (screen) => this.setState({ screen });
 
+  season() {
+    var p = this.props.season;
+    return (p && p !== 'Auto (by date)') ? p.toLowerCase() : currentSeason();
+  }
+
   matches() {
     const { time, budget, area, interests } = this.state;
+    const season = this.season();
     let list = IDEAS.filter(i =>
       i.mins <= time &&
       i.low <= budget &&
       (area === 'Anywhere in the county' || i.area === area) &&
-      (interests.length === 0 || i.tags.some(t => interests.indexOf(t) !== -1)));
+      (interests.length === 0 || i.tags.some(t => interests.indexOf(t) !== -1)) &&
+      (i.seasons.indexOf('all') !== -1 || i.seasons.indexOf(season) !== -1));
     const sort = this.props.sortBy || 'A mix';
     if (sort.indexOf('Quickest') === 0) list = list.slice().sort((a,b) => a.mins - b.mins);
     if (sort.indexOf('Cheapest') === 0) list = list.slice().sort((a,b) => a.high - b.high);
@@ -273,8 +424,15 @@ class Component extends DCLogic {
     const detail = list.find(i => i.id === s.chosen) || list[0] || IDEAS[0];
     const others = list.filter(i => i.id !== detail.id);
     const altCount = this.props.alternativesCount ?? 3;
-    const budgetLabel = s.budget === 0 ? 'Free only' : (s.budget >= 75 ? '$75+' : '$' + s.budget);
+    const budgetLabel = s.budget === 0 ? 'Free only' : (s.budget >= 120 ? '$120+' : '$' + s.budget);
     const n = list.length;
+
+    const season = this.season();
+    const sMeta = SEASONS[season];
+    const featured = list.filter(i => i.featured);
+    const featuredShown = featured.slice(0, 4);
+    const featuredIds = featuredShown.map(i => i.id);
+    const altPool = others.filter(i => featuredIds.indexOf(i.id) === -1);
 
     return {
       isLanding: s.screen === 'landing',
@@ -284,7 +442,20 @@ class Component extends DCLogic {
       goSet: () => this.go('set'),
       goOptions: () => this.setState({ screen:'options', chosen:null }),
 
-      alternatives: others.slice(0, altCount).map(i => ({
+      seasonKicker: sMeta.emoji + ' ' + sMeta.label + ' · Utah County',
+      seasonLabel: sMeta.emoji + ' ' + sMeta.label + ' in Utah County',
+      seasonNote: 'Featured while it lasts — ' + sMeta.note + '.',
+      hasSeasonal: featuredShown.length > 0,
+      noSeasonal: featuredShown.length === 0,
+      noSeasonalNote: 'No seasonal features fit those filters yet — widen the budget, time, or area to see what’s on right now.',
+      seasonal: featuredShown.map(i => ({
+        badge: sMeta.label + ' pick',
+        title: i.title, hook: i.hook,
+        meta: i.timeLabel.replace('About ','') + '  ·  ' + i.costLabel + '  ·  ' + i.where,
+        pick: () => this.setState({ chosen: i.id })
+      })),
+
+      alternatives: altPool.slice(0, altCount).map(i => ({
         title: i.title, hook: i.hook,
         meta: i.timeLabel.replace('About ','') + '  ·  ' + i.costLabel + '  ·  ' + i.where,
         pick: () => this.setState({ chosen: i.id })
@@ -329,10 +500,12 @@ class Component extends DCLogic {
       detail: {
         title: detail.title, timeLabel: detail.timeLabel, costLabel: detail.costLabel,
         where: detail.where, blurb: detail.blurb,
+        isSeasonal: !!detail.featured,
+        seasonChip: sMeta.emoji + ' ' + sMeta.label + ' pick',
         steps: detail.steps.map((text,idx) => ({ n: idx+1, text }))
       },
-      moreNote: others.length > altCount
-        ? 'There are ' + (others.length - altCount) + ' more that fit tonight — widen the time or budget to see them.'
+      moreNote: altPool.length > altCount
+        ? 'There are ' + (altPool.length - altCount) + ' more that fit tonight — widen the time or budget to see them.'
         : 'Want different ones? Change the time, money, or area and look again.'
     };
   }
